@@ -1,0 +1,6 @@
+{
+    "extends": ["airbnb", "airbnb/hooks", "react-app"], 
+    "env": {
+        "browser": true
+    }
+}
