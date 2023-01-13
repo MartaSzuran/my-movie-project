@@ -1,24 +1,18 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage';
+import SearchPage from './pages/SearchPage/SearchPage';
+import MoviePage from './pages/MoviePage/MoviePage';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit
-          <code>src/App.js</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/movie" element={<MoviePage />} />
+      </Routes>
     </div>
   );
 }
