@@ -1,0 +1,20 @@
+.mainHeaderStyle {
+    height: 60px;
+    width: auto;
+    background-color: rgb(188, 206, 222);
+    box-shadow: 0px 3px 5px #8f8fb6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px 15px 30px;
+    font-size: 	26.56px;
+    color: #662d8b;
+    text-decoration: none;
+}
+
+.leftSideMainHeaderStyles {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-left: 15px;
+}
