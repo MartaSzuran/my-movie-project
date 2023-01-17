@@ -1,0 +1,23 @@
+.mainHeaderStyle {
+    height: 60px;
+    width: auto;
+    background-color: var(--darker-blue);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px 15px 30px;
+    font-size: 	26px;
+    color: var(--bluish-white);
+    text-decoration: none;
+}
+
+.leftSideMainHeaderStyles {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-left: 15px;
+}
+
+.headerLinkStyle {
+  color: var(--bluish-white);
+}

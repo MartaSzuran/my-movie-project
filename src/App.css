@@ -1,0 +1,15 @@
+.mainContainer {
+  margin: 30px 47px 0px 47px;
+  height: fit-content;
+  min-height: 500px;
+}
+
+a {
+  text-decoration: none;
+  display: contents;
+  padding: 30px;
+}
+
+a:active {
+  color: #5e5e91;
+}

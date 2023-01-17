@@ -1,0 +1,15 @@
+.footerHeaderStyle {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  padding: 3px;
+}
+
+.footerTableBodyStyle {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  padding-left: 4px;
+}

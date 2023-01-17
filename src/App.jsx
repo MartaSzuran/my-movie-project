@@ -1,24 +1,18 @@
-import React from 'react';
+import AppRoutes from './AppRoutes/AppRoutes';
+import MainHeader from './components/MainHeader/MainHeader';
+import TitleHeader from './components/TitleHeader/TitleHeader';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit
-          <code>src/App.js</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MainHeader />
+      <TitleHeader />
+      <div className="mainContainer">
+        <AppRoutes />
+      </div>
+      <Footer />
     </div>
   );
 }

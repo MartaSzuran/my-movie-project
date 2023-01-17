@@ -1,0 +1,10 @@
+:root {
+  /* colors */
+  --light-blue: #18b8db;
+  --basic-blue: #00a0dd;
+  --darker-blue: #042445;
+  --bluish-white: #faffff;
+
+  /* fonts */
+  --main-font-family: 'Source Sans Pro', Arial, sans-serif;
+};
