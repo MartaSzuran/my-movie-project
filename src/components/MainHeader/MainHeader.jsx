@@ -11,9 +11,9 @@ export default function MainHeader() {
           <TheatersTwoToneIcon style={{ fontSize: '60px' }} />
         </Link>
         <Link to="/movies">Movies</Link>
-        <Typography variant="h5">TV Shows</Typography>
-        <Typography variant="h5">Poeple</Typography>
-        <Typography variant="h5">More</Typography>
+        <Typography variant="h5" style={{ fontSize: '26.56px' }}>TV Shows</Typography>
+        <Typography variant="h5" style={{ fontSize: '26.56px' }}>Poeple</Typography>
+        <Typography variant="h5" style={{ fontSize: '26.56px' }}>More</Typography>
       </Box>
     </Box>
   );
