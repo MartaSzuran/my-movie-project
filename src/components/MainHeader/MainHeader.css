@@ -1,14 +1,13 @@
 .mainHeaderStyle {
     height: 60px;
     width: auto;
-    background-color: var(--light-blue);
-    box-shadow: 0px 0px 15px 6px var(--super-light-grey);
+    background-color: var(--darker-blue);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px 30px 15px 30px;
-    font-size: 	26.56px;
-    color: var(--dark-violet);
+    font-size: 	26px;
+    color: var(--bluish-white);
     text-decoration: none;
 }
 
@@ -17,4 +16,8 @@
     align-items: center;
     gap: 24px;
     margin-left: 15px;
+}
+
+.headerLinkStyle {
+  color: var(--bluish-white);
 }

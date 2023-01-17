@@ -4,9 +4,9 @@ export default function FooterTables() {
   return (
     <>
       <table>
-        <thead className="footerHeaderStyle">
+        <thead>
           <tr>
-            <th>THE BASICS</th>
+            <th className="footerHeaderStyle">THE BASICS</th>
           </tr>
         </thead>
         <tbody>
@@ -20,9 +20,9 @@ export default function FooterTables() {
         </tbody>
       </table>
       <table>
-        <thead className="footerHeaderStyle">
+        <thead>
           <tr>
-            <th>GET INVOLVED</th>
+            <th className="footerHeaderStyle">GET INVOLVED</th>
           </tr>
         </thead>
         <tbody>
@@ -34,9 +34,9 @@ export default function FooterTables() {
         </tbody>
       </table>
       <table>
-        <thead className="footerHeaderStyle">
+        <thead>
           <tr>
-            <th>COMMUNITY</th>
+            <th className="footerHeaderStyle">COMMUNITY</th>
           </tr>
         </thead>
         <tbody>

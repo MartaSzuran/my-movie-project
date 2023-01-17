@@ -1,13 +1,10 @@
 :root {
   /* colors */
-  --light-blue: #bccede;
-  --dark-violet: #5f2b91;
-  --darker-violet: #662d8b;
-  --light-violet: #5e5e91;
-  --super-light-grey: #8f8fb6;
-  --dark-blue: #00008a;
-  --bluish-white: #f0f8ff;
+  --light-blue: #18b8db;
+  --basic-blue: #00a0dd;
+  --darker-blue: #042445;
+  --bluish-white: #faffff;
 
   /* fonts */
-  --main-font-family: 'Dosis', sans-serif;
+  --main-font-family: 'Source Sans Pro', Arial, sans-serif;
 };
