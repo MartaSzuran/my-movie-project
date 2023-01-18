@@ -6,7 +6,7 @@ import './Footer.css';
 export default function Footer() {
   return (
     <Box className="mainFooterContainerStyle">
-      <TheatersTwoToneIcon style={{ fontSize: '140px', color: '#18b8db' }} />
+      <TheatersTwoToneIcon className="footerImageStyle" style={{ fontSize: '140px' }} />
       <FooterTables />
     </Box>
   );

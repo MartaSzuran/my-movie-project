@@ -7,6 +7,10 @@
   background-color: var(--darker-blue);
   color: white;
   padding: 30px 30px 0px 30px;
-  font-size: 26.56px;
   text-decoration: none;
+}
+
+.footerImageStyle {
+  color: #18b8db;
+  transform: rotate(90deg);
 }
