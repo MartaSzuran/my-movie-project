@@ -8,7 +8,7 @@ export default function MainHeader() {
     <Box className="mainHeaderStyle">
       <Box className="leftSideMainHeaderStyles">
         <Link to="/">
-          <TheatersTwoToneIcon style={{ fontSize: '60px', color: '#18b8db' }} />
+          <TheatersTwoToneIcon className="mainHeaderImageStyle" style={{ fontSize: '64px' }} />
         </Link>
         <Link to="/movies" className="headerLinkStyle">Movies</Link>
         <p>TV Shows</p>
