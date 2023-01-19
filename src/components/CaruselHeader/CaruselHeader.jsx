@@ -1,13 +1,14 @@
 import { PropTypes } from 'prop-types';
 import { Box, Tab, Tabs } from '@mui/material';
+import switchTitlesPopularity from '../../constants/switchTitlesPopularity';
 import './CaruselHeader.css';
 
 function CaruselHeader({
-  caruselTitle,
   switchTitle,
   handleSwitchTitleChange,
-  switchTitlesPopularity,
 }) {
+  const caruselTitle = "What's popular?";
+
   return (
     <Box className="caruselHeader">
       <h4 className="caruselTitle">{caruselTitle}</h4>
@@ -27,15 +28,12 @@ function CaruselHeader({
 }
 
 CaruselHeader.propTypes = {
-  caruselTitle: PropTypes.string.isRequired,
-  switchTitle: PropTypes.string.isRequired,
+  switchTitle: PropTypes.string,
   handleSwitchTitleChange: PropTypes.func.isRequired,
-  switchTitlesPopularity: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+};
+
+CaruselHeader.defaultProps = {
+  switchTitle: '',
 };
 
 export default CaruselHeader;

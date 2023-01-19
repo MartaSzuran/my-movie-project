@@ -1,6 +1,7 @@
 .caruselHeader {
   display: flex;
   height: 25px;
+  margin-left: 15px;
 }
 
 .caruselSwitchesContainer {
@@ -8,8 +9,6 @@
   height: 25px;
   border: var(--darker-blue) solid 1px;
   border-radius: 40px;
-  justify-content: space-evenly;
-  align-items: center;
 }
 
 .caruselTitle {
@@ -18,11 +17,13 @@
   margin: auto;
 }
 
-.MuiTabs-scroller.MuiTabs-fixed.css-jpln7h-MuiTabs-scroller {
+/* main tab root*/
+.MuiTabs-root.css-1ujnqem-MuiTabs-root {
   position: inherit;
   min-height: 25px;
 }
 
+/* main tab */
 .MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
   width: 102px;
   min-height: 25px;
@@ -30,6 +31,7 @@
   text-transform: none;
 }
 
+/* tab selected */
 .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
   max-width: 110px;
   line-height: 25px;

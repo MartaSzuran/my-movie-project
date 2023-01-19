@@ -2,37 +2,30 @@ import { PropTypes } from 'prop-types';
 import { Box } from '@mui/material';
 import CaruselHeader from '../CaruselHeader/CaruselHeader';
 import CaruselBody from '../CaruselBody/CaruselBody';
-import './Carusel.css';
+import './CaruselPopular.css';
 
-function Carusel({
-  caruselTitle,
+function CaruselPopular({
   switchTitle,
   handleSwitchTitleChange,
-  switchTitlesPopularity,
 }) {
   return (
     <Box className="caruselContainer">
       <CaruselHeader
-        caruselTitle={caruselTitle}
         switchTitle={switchTitle}
         handleSwitchTitleChange={handleSwitchTitleChange}
-        switchTitlesPopularity={switchTitlesPopularity}
       />
       <CaruselBody />
     </Box>
   );
 }
 
-Carusel.propTypes = {
-  caruselTitle: PropTypes.string.isRequired,
-  switchTitle: PropTypes.string.isRequired,
+CaruselPopular.propTypes = {
+  switchTitle: PropTypes.string,
   handleSwitchTitleChange: PropTypes.func.isRequired,
-  switchTitlesPopularity: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
 };
 
-export default Carusel;
+CaruselPopular.defaultProps = {
+  switchTitle: '',
+};
+
+export default CaruselPopular;
