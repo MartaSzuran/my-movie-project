@@ -1,0 +1,50 @@
+.caruselHeader {
+  display: flex;
+  height: 25px;
+  margin-left: 15px;
+}
+
+.caruselSwitchesContainer {
+  width: 408px;
+  height: 25px;
+  border: var(--darker-blue) solid 1px;
+  border-radius: 40px;
+}
+
+.caruselTitle {
+  width: 150px;
+  max-height: 25px;
+  margin: auto;
+}
+
+/* main tab root*/
+.MuiTabs-root.css-1ujnqem-MuiTabs-root {
+  position: inherit;
+  min-height: 25px;
+}
+
+/* main tab */
+.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+  width: 102px;
+  min-height: 25px;
+  padding: 0px;
+  text-transform: none;
+}
+
+/* tab selected */
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  max-width: 110px;
+  line-height: 25px;
+  max-height: 25px;
+  min-height: 25px;
+  padding: 5px;
+  background-color: var(--darker-blue);
+  font-weight: bold;
+  border-radius: 40px;
+  border-bottom-color: white;
+  text-transform: none;
+}
+
+.MuiTabs-indicator.css-1aquho2-MuiTabs-indicator {
+  background-color: transparent;
+}
