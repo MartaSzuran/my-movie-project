@@ -2,15 +2,10 @@
   margin: auto;
   height: 100%;
   width: 97%;
-  padding: 15px;
+  padding: 20px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
-}
-
-.caruselCard {
-  flex: 0 0 auto;
-  width: 200px;
 }
 
 ::-webkit-scrollbar {

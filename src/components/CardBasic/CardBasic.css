@@ -1,0 +1,31 @@
+.basicCardStyle {
+  flex: 0 0 auto;
+  width: 156px;
+  margin-left: 30px;
+}
+
+.cardImage {
+  width: 156px;
+  height: 245px;
+  border-radius: 8px;
+}
+
+.cardDescription {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.cardTitle {
+  font-weight: bold;
+  overflow-wrap: break-word;
+  white-space: normal;
+  font-size: 15px;
+  padding: 3px;
+}
+
+.cardReleaseDate {
+  color: var(--light-black);
+  font-size: 13px;
+  padding: 2px;
+}

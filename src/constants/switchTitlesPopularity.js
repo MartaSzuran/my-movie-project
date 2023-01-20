@@ -1,19 +1,11 @@
 const switchTitlesPopularity = [
   {
-    name: 'Streaming',
-    type: 'Streaming',
+    name: 'Movies',
+    type: 'movie',
   },
   {
     name: 'On Tv',
-    type: 'On Tv',
-  },
-  {
-    name: 'For Rent',
-    type: 'For Rent',
-  },
-  {
-    name: 'In Theaters',
-    type: 'In Theaters',
+    type: 'tv',
   },
 ];
 

@@ -1,50 +1,38 @@
 import { Box } from '@mui/material';
+import { PropTypes } from 'prop-types';
+import CardBasic from '../CardBasic/CardBasic';
 import './CaruselBody.css';
 
-function CaruselBody() {
+function CaruselBody({ movies }) {
   return (
     <Box className="caruselBody">
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
-      <div className="caruselCard">
-        My card!
-      </div>
+      {movies.map(({
+        posterPath,
+        title,
+        releaseDate,
+        voteAverage,
+      }) => (
+        <CardBasic
+          key={title}
+          posterPath={posterPath}
+          title={title}
+          releaseDate={releaseDate}
+          voteAverage={voteAverage}
+        />
+      ))}
     </Box>
   );
 }
+
+CaruselBody.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      posterPath: PropTypes.string,
+      title: PropTypes.string,
+      releaseDate: PropTypes.string,
+      voteAverage: PropTypes.number,
+    }),
+  ).isRequired,
+};
 
 export default CaruselBody;
