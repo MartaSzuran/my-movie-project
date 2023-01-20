@@ -1,4 +1,4 @@
-const switchTitlesPopularity = [
+export const switchTitlesPopularity = [
   {
     name: 'Movies',
     type: 'movie',
@@ -9,4 +9,7 @@ const switchTitlesPopularity = [
   },
 ];
 
-export default switchTitlesPopularity;
+export const switchTitlesPopularityDefault = {
+  name: 'Movies',
+  type: 'movie',
+};

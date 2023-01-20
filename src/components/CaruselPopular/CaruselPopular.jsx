@@ -2,9 +2,9 @@ import { PropTypes } from 'prop-types';
 import { Box } from '@mui/material';
 import CaruselHeader from '../CaruselHeader/CaruselHeader';
 import CaruselBody from '../CaruselBody/CaruselBody';
-import './CaruselPopularMovies.css';
+import './CaruselPopular.css';
 
-function CaruselPopularMovies({
+function CaruselPopular({
   switchTitle,
   handleSwitchTitleChange,
   movies,
@@ -20,21 +20,26 @@ function CaruselPopularMovies({
   );
 }
 
-CaruselPopularMovies.propTypes = {
+CaruselPopular.propTypes = {
   switchTitle: PropTypes.string,
   handleSwitchTitleChange: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(
     PropTypes.shape({
-      posterPath: PropTypes.string,
+      poster_path: PropTypes.string.isRequired,
       title: PropTypes.string,
-      releaseDate: PropTypes.string,
-      voteAverage: PropTypes.number,
+      release_date: PropTypes.string,
+      vote_average: PropTypes.number,
     }),
-  ).isRequired,
+  ),
 };
 
-CaruselPopularMovies.defaultProps = {
+CaruselPopular.defaultProps = {
   switchTitle: '',
+  movies: [{
+    title: '',
+    release_date: '',
+    vote_average: 0,
+  }],
 };
 
-export default CaruselPopularMovies;
+export default CaruselPopular;

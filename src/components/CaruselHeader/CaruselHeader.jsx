@@ -1,6 +1,6 @@
 import { PropTypes } from 'prop-types';
 import { Box, Tab, Tabs } from '@mui/material';
-import switchTitlesPopularity from '../../constants/switchTitlesPopularity';
+import { switchTitlesPopularity } from '../../constants/switchTitlesPopularity';
 import './CaruselHeader.css';
 
 function CaruselHeader({

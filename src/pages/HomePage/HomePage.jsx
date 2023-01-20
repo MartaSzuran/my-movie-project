@@ -1,36 +1,37 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import CaruselPopularMovies from '../../components/CaruselPopularMovies/CaruselPopularMovies';
+import CaruselPopular from '../../components/CaruselPopular/CaruselPopular';
 import { selectAllMovies, fetchPopularData } from '../../redux/slices/moviesSlice';
-import switchTitlesPopularity from '../../constants/switchTitlesPopularity';
+import { switchTitlesPopularity, switchTitlesPopularityDefault } from '../../constants/switchTitlesPopularity';
 
 export default function HomePage() {
   const dispatch = useDispatch();
   const movies = useSelector(selectAllMovies);
 
-  const [switchTitle, setSwitchTitle] = useState(switchTitlesPopularity[0].name);
+  const [switchTitle, setSwitchTitle] = useState(switchTitlesPopularityDefault.name);
 
-  const handleSwitchTitleChange = (event, newTitleValue) => {
+  const handleSwitchTitleChange = (_, newTitleValue) => {
     setSwitchTitle(newTitleValue);
+    checkNewSwitchType(newTitleValue);
+  };
+
+  const checkNewSwitchType = (newTitleValue) => {
+    if (newTitleValue === 'On Tv') {
+      return dispatch(fetchPopularData(switchTitlesPopularity[1].type));
+    }
+    return dispatch(fetchPopularData(switchTitlesPopularity[0].type));
   };
 
   useEffect(() => {
     dispatch(fetchPopularData(switchTitlesPopularity[0].type));
-  }, [dispatch]);
-
-  const myCastomInfoMovies = movies.map((movie) => ({
-    posterPath: movie.poster_path,
-    title: movie.title,
-    releaseDate: movie.release_date,
-    voteAverage: movie.vote_average,
-  }));
+  }, []);
 
   return (
     <div>
-      <CaruselPopularMovies
+      <CaruselPopular
         switchTitle={switchTitle}
         handleSwitchTitleChange={handleSwitchTitleChange}
-        movies={myCastomInfoMovies}
+        movies={movies}
       />
     </div>
   );

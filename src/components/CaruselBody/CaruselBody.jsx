@@ -7,13 +7,14 @@ function CaruselBody({ movies }) {
   return (
     <Box className="caruselBody">
       {movies.map(({
-        posterPath,
+        id,
+        poster_path: posterPath,
         title,
-        releaseDate,
-        voteAverage,
+        release_date: releaseDate,
+        vote_average: voteAverage,
       }) => (
         <CardBasic
-          key={title}
+          key={id}
           posterPath={posterPath}
           title={title}
           releaseDate={releaseDate}
@@ -27,12 +28,20 @@ function CaruselBody({ movies }) {
 CaruselBody.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
-      posterPath: PropTypes.string,
+      poster_path: PropTypes.string.isRequired,
       title: PropTypes.string,
-      releaseDate: PropTypes.string,
-      voteAverage: PropTypes.number,
+      release_date: PropTypes.string,
+      vote_average: PropTypes.number,
     }),
-  ).isRequired,
+  ),
+};
+
+CaruselBody.defaultProps = {
+  movies: [{
+    title: '',
+    release_date: '',
+    vote_average: 0,
+  }],
 };
 
 export default CaruselBody;

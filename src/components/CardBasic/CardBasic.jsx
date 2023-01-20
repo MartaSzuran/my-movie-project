@@ -1,5 +1,6 @@
 import { PropTypes } from 'prop-types';
 import { Box, Typography } from '@mui/material';
+import photoUrl from '../../constants/photosBasicUrl';
 import './CardBasic.css';
 
 function CardBasic({
@@ -12,7 +13,7 @@ function CardBasic({
     <Box className="basicCardStyle">
       <img
         className="cardImage"
-        src={`https://image.tmdb.org/t/p/w220_and_h330_face/${posterPath}`}
+        src={`${photoUrl}${posterPath}`}
         alt={title}
       />
       <Box className="cardDescription">
