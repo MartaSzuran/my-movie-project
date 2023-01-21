@@ -5,30 +5,30 @@ import getData from '../../api/index';
 const { REACT_APP_DB_URL } = process.env;
 
 const initialState = {
-  movies: [],
+  popularData: [],
   isLoading: true,
   error: null,
 };
 
-export const fetchPopularData = createAsyncThunk('movies/fetchPopularData', async (type) => {
+export const fetchPopularCaruselData = createAsyncThunk('popularData/fetchPopularCaruselData', async (type) => {
   const sortBy = 'popularity.desc';
   const url = `${REACT_APP_DB_URL}${getDefaultQuery(sortBy, type)}`;
   const response = await getData(url);
   return response.data;
 });
 
-const moviesSlice = createSlice({
-  name: 'movies',
+const popularDataSlice = createSlice({
+  name: 'popularData',
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchPopularData.fulfilled, (state, action) => {
-        state.movies = action.payload.results;
+      .addCase(fetchPopularCaruselData.fulfilled, (state, action) => {
+        state.popularData = action.payload.results;
       });
   },
 });
 
-export default moviesSlice.reducer;
+export default popularDataSlice.reducer;
 
-export const selectAllMovies = (state) => state.movies.movies;
+export const selectAllPopularCaruselData = (state) => state.popularData.popularData;

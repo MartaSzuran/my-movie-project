@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CaruselPopular from '../../components/CaruselPopular/CaruselPopular';
-import { selectAllMovies, fetchPopularData } from '../../redux/slices/moviesSlice';
+import { selectAllPopularCaruselData, fetchPopularCaruselData } from '../../redux/slices/popularDataSlice';
 import { switchMoviesTitle, switchOnTvTitle } from '../../constants/switchTitlesPopularity';
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const dataPopular = useSelector(selectAllMovies);
+  const dataCaruselPopular = useSelector(selectAllPopularCaruselData);
 
   const [switchTitle, setSwitchTitle] = useState(switchMoviesTitle.name);
   const [switchTitleType, setSwitchTitleType] = useState(switchMoviesTitle.type);
@@ -24,7 +24,7 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    dispatch(fetchPopularData(switchTitleType));
+    dispatch(fetchPopularCaruselData(switchTitleType));
   }, [switchTitleType]);
 
   return (
@@ -32,7 +32,7 @@ export default function HomePage() {
       <CaruselPopular
         switchTitle={switchTitle}
         handleSwitchTitleChange={handleSwitchTitleChange}
-        dataPopular={dataPopular}
+        dataPopular={dataCaruselPopular}
       />
     </div>
   );
