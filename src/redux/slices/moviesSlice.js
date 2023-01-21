@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import defaultQueryParams from '../../utils/defaultApiQueryParams';
+import getDefaultQuery from '../../utils/defaultApiQueryParams';
 import getData from '../../api/index';
 
 const { REACT_APP_DB_URL } = process.env;
@@ -11,10 +11,8 @@ const initialState = {
 };
 
 export const fetchPopularData = createAsyncThunk('movies/fetchPopularData', async (type) => {
-  const pages = 1;
   const sortBy = 'popularity.desc';
-  const defaultUrlQueryParams = defaultQueryParams(sortBy, pages, type);
-  const url = `${REACT_APP_DB_URL}${defaultUrlQueryParams}`;
+  const url = `${REACT_APP_DB_URL}${getDefaultQuery(sortBy, type)}`;
   const response = await getData(url);
   return response.data;
 });

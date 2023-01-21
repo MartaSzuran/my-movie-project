@@ -6,7 +6,7 @@ import './CaruselBody.css';
 function CaruselBody({ movies }) {
   return (
     <Box className="caruselBody">
-      {movies.map(({
+      { movies.map(({
         id,
         poster_path: posterPath,
         title,

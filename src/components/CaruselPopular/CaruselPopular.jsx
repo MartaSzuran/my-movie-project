@@ -15,7 +15,9 @@ function CaruselPopular({
         switchTitle={switchTitle}
         handleSwitchTitleChange={handleSwitchTitleChange}
       />
-      <CaruselBody movies={movies} />
+      <CaruselBody
+        movies={movies}
+      />
     </Box>
   );
 }
