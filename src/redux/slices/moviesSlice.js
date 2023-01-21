@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import getDefaultQuery from '../../utils/defaultApiQueryParams';
 import getData from '../../api/index';
 
-const { REACT_APP_MOVIE_API_KEY } = process.env;
 const { REACT_APP_DB_URL } = process.env;
 
 const initialState = {
@@ -10,10 +10,9 @@ const initialState = {
   error: null,
 };
 
-export const fetchPopularMovies = createAsyncThunk('movies/fetchPopularMovies', async () => {
-  const pages = 1;
-  const sortBy = 'popularity.asc';
-  const url = `${REACT_APP_DB_URL}?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=${sortBy}&include_adult=false&include_video=false&page=${pages}&with_watch_monetization_types=flatrate`;
+export const fetchPopularData = createAsyncThunk('movies/fetchPopularData', async (type) => {
+  const sortBy = 'popularity.desc';
+  const url = `${REACT_APP_DB_URL}${getDefaultQuery(sortBy, type)}`;
   const response = await getData(url);
   return response.data;
 });
@@ -24,8 +23,8 @@ const moviesSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchPopularMovies.fulfilled, (state, action) => {
-        state.movies = action.payload;
+      .addCase(fetchPopularData.fulfilled, (state, action) => {
+        state.movies = action.payload.results;
       });
   },
 });

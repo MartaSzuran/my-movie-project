@@ -1,26 +1,36 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CaruselPopular from '../../components/CaruselPopular/CaruselPopular';
-import { selectAllMovies, fetchPopularMovies } from '../../redux/slices/moviesSlice';
-import switchTitlesPopularity from '../../constants/switchTitlesPopularity';
+import { selectAllMovies, fetchPopularData } from '../../redux/slices/moviesSlice';
+import { switchMoviesTitle, switchOnTvTitle } from '../../constants/switchTitlesPopularity';
 
 export default function HomePage() {
   const dispatch = useDispatch();
   const movies = useSelector(selectAllMovies);
+  const [switchTitle, setSwitchTitle] = useState(switchMoviesTitle.name);
 
-  const [switchTitle, setSwitchTitle] = useState(switchTitlesPopularity[0].name);
+  const handleSwitchTitleChange = (_, newTitleValue) => {
+    setSwitchTitle(newTitleValue);
+    checkNewSwitchType(newTitleValue);
+  };
 
-  const handleSwitchTitleChange = (event, newTitleValue) => { setSwitchTitle(newTitleValue); };
+  const checkNewSwitchType = (newTitleValue) => {
+    if (newTitleValue === switchOnTvTitle.name) {
+      return dispatch(fetchPopularData(switchOnTvTitle.type));
+    }
+    return dispatch(fetchPopularData(switchMoviesTitle.type));
+  };
 
   useEffect(() => {
-    dispatch(fetchPopularMovies());
-  }, [dispatch]);
+    dispatch(fetchPopularData(switchMoviesTitle.type));
+  }, []);
 
   return (
     <div>
       <CaruselPopular
         switchTitle={switchTitle}
         handleSwitchTitleChange={handleSwitchTitleChange}
+        movies={movies}
       />
     </div>
   );

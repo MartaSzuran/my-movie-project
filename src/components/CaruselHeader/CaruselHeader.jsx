@@ -7,7 +7,7 @@ function CaruselHeader({
   switchTitle,
   handleSwitchTitleChange,
 }) {
-  const caruselTitle = "What's popular?";
+  const caruselTitle = "What's popular";
 
   return (
     <Box className="caruselHeader">

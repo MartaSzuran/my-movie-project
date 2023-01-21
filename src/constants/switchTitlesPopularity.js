@@ -1,20 +1,12 @@
-const switchTitlesPopularity = [
-  {
-    name: 'Streaming',
-    type: 'Streaming',
-  },
-  {
-    name: 'On Tv',
-    type: 'On Tv',
-  },
-  {
-    name: 'For Rent',
-    type: 'For Rent',
-  },
-  {
-    name: 'In Theaters',
-    type: 'In Theaters',
-  },
-];
+export const switchMoviesTitle = {
+  name: 'Movies',
+  type: 'movie',
+};
+export const switchOnTvTitle = {
+  name: 'On Tv',
+  type: 'tv',
+};
+
+const switchTitlesPopularity = [switchMoviesTitle, switchOnTvTitle];
 
 export default switchTitlesPopularity;
