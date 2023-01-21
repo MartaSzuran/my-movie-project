@@ -6,8 +6,10 @@ import { switchMoviesTitle, switchOnTvTitle } from '../../constants/switchTitles
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const movies = useSelector(selectAllMovies);
+  const dataPopular = useSelector(selectAllMovies);
+
   const [switchTitle, setSwitchTitle] = useState(switchMoviesTitle.name);
+  const [switchTitleType, setSwitchTitleType] = useState(switchMoviesTitle.type);
 
   const handleSwitchTitleChange = (_, newTitleValue) => {
     setSwitchTitle(newTitleValue);
@@ -16,21 +18,21 @@ export default function HomePage() {
 
   const checkNewSwitchType = (newTitleValue) => {
     if (newTitleValue === switchOnTvTitle.name) {
-      return dispatch(fetchPopularData(switchOnTvTitle.type));
+      return setSwitchTitleType(switchOnTvTitle.type);
     }
-    return dispatch(fetchPopularData(switchMoviesTitle.type));
+    return setSwitchTitleType(switchMoviesTitle.type);
   };
 
   useEffect(() => {
-    dispatch(fetchPopularData(switchMoviesTitle.type));
-  }, []);
+    dispatch(fetchPopularData(switchTitleType));
+  }, [switchTitleType]);
 
   return (
     <div>
       <CaruselPopular
         switchTitle={switchTitle}
         handleSwitchTitleChange={handleSwitchTitleChange}
-        movies={movies}
+        dataPopular={dataPopular}
       />
     </div>
   );
