@@ -1,6 +1,8 @@
 import { PropTypes } from 'prop-types';
 import { Box, Typography } from '@mui/material';
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import PHOTOURL from '../../constants/photosBasicUrl';
+import 'react-circular-progressbar/dist/styles.css';
 import './CardBasic.css';
 
 function CardBasic({
@@ -9,6 +11,50 @@ function CardBasic({
   releaseDate,
   voteAverage,
 }) {
+  const checkPopularityValue = () => {
+    const percentagePopularityValue = voteAverage * 10;
+    if (percentagePopularityValue >= 70) {
+      return (
+        <CircularProgressbar
+          value={percentagePopularityValue}
+          text={`${percentagePopularityValue}%`}
+          styles={buildStyles({
+            textColor: 'var(--darker-white)',
+            pathColor: 'var(--light-green)',
+            trailColor: 'var(--dark-grey)',
+            textSize: '30px',
+          })}
+        />
+      );
+    }
+    if (percentagePopularityValue < 70 && percentagePopularityValue >= 30) {
+      return (
+        <CircularProgressbar
+          value={percentagePopularityValue}
+          text={`${percentagePopularityValue}%`}
+          styles={buildStyles({
+            textColor: 'var(--darker-white)',
+            pathColor: 'var(--light-yellow)',
+            trailColor: 'var(--dark-grey)',
+            textSize: '33px',
+          })}
+        />
+      );
+    }
+    return (
+      <CircularProgressbar
+        value={percentagePopularityValue}
+        text={`${percentagePopularityValue}%`}
+        styles={buildStyles({
+          textColor: 'var(--darker-white)',
+          pathColor: 'var(--dark-pink)',
+          trailColor: 'var(--dark-grey)',
+          textSize: '33px',
+        })}
+      />
+    );
+  };
+
   return (
     <Box className="basicCardStyle">
       <img
@@ -16,9 +62,12 @@ function CardBasic({
         src={`${PHOTOURL}${posterPath}`}
         alt={title}
       />
+      <Box className="circularProgressContainer">
+        {checkPopularityValue()}
+      </Box>
       <Box className="cardDescription">
         <Typography variant="h8" className="cardTitle">{title}</Typography>
-        <Typography variant="subtitle1" className="cardReleaseDate">{releaseDate}</Typography>
+        <Typography className="cardReleaseDate">{releaseDate}</Typography>
       </Box>
     </Box>
   );

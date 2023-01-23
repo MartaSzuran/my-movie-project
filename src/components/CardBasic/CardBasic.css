@@ -12,7 +12,7 @@
 .cardDescription {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 0px 10px;
 }
 
 .cardTitle {
@@ -23,8 +23,20 @@
   padding: 3px;
 }
 
-.cardReleaseDate {
+.cardReleaseDate.cardReleaseDate {
   color: var(--light-black);
   font-size: 13px;
   padding: 2px;
+}
+
+.circularProgressContainer {
+  position: relative;
+  margin-left: 10px;
+  background-color: black;
+  border-radius: 30px;
+  top: -19px;
+  width: 38px;
+  height: 38px;
+  font-weight: 600;
+  border: 2px solid black;
 }
