@@ -36,7 +36,7 @@ function CardBasic({
             textColor: 'var(--darker-white)',
             pathColor: 'var(--light-yellow)',
             trailColor: 'var(--dark-grey)',
-            textSize: '33px',
+            textSize: '30px',
           })}
         />
       );
@@ -49,7 +49,7 @@ function CardBasic({
           textColor: 'var(--darker-white)',
           pathColor: 'var(--dark-pink)',
           trailColor: 'var(--dark-grey)',
-          textSize: '33px',
+          textSize: '30px',
         })}
       />
     );
