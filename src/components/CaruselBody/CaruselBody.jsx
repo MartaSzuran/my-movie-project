@@ -1,14 +1,18 @@
-import { Box } from '@mui/material';
 import { PropTypes } from 'prop-types';
+import { Box } from '@mui/material';
+import { useSelector } from 'react-redux';
 import CardBasic from '../CardBasic/CardBasic';
 import { switchMoviesTitle } from '../../constants/switchTitlesPopularity';
+import CaruselLoader from '../CaruselLoader/CaruselLoader';
 import './CaruselBody.css';
 
 function CaruselBody({ dataPopular, switchTitle }) {
-  return (
-    <Box className="caruselBody">
-      {switchTitle === switchMoviesTitle.name
-        ? dataPopular.map(({
+  const caruselLoading = useSelector((state) => state.popularData.isLoading);
+
+  const checkPopularDataType = () => {
+    if (switchTitle === switchMoviesTitle.name) {
+      return (
+        dataPopular.map(({
           id,
           poster_path: posterPath,
           title,
@@ -23,21 +27,32 @@ function CaruselBody({ dataPopular, switchTitle }) {
             voteAverage={voteAverage}
           />
         ))
-        : dataPopular.map(({
-          id,
-          poster_path: posterPath,
-          name,
-          first_air_date: releaseDate,
-          vote_average: voteAverage,
-        }) => (
-          <CardBasic
-            key={id}
-            posterPath={posterPath}
-            title={name}
-            releaseDate={releaseDate}
-            voteAverage={voteAverage}
-          />
-        ))}
+      );
+    }
+    return (
+      dataPopular.map(({
+        id,
+        poster_path: posterPath,
+        name,
+        first_air_date: releaseDate,
+        vote_average: voteAverage,
+      }) => (
+        <CardBasic
+          key={id}
+          posterPath={posterPath}
+          title={name}
+          releaseDate={releaseDate}
+          voteAverage={voteAverage}
+        />
+      ))
+    );
+  };
+
+  return (
+    <Box className="caruselBody">
+      {caruselLoading
+        ? <CaruselLoader />
+        : checkPopularDataType()}
     </Box>
   );
 }

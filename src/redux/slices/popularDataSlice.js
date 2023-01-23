@@ -24,7 +24,11 @@ const popularDataSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchPopularCaruselData.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.popularData = action.payload.results;
+      })
+      .addCase(fetchPopularCaruselData.pending, (state, action) => {
+        state.isLoading = true;
       });
   },
 });

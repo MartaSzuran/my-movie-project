@@ -1,0 +1,8 @@
+.skeletonContainer {
+  width: 156px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 20px;
+}
