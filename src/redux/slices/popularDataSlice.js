@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getDefaultQuery from '../../utils/defaultApiQueryParams';
 import getData from '../../api/index';
 
-const { REACT_APP_DB_URL } = process.env;
-
 const initialState = {
   popularData: [],
   isLoading: true,
@@ -12,8 +10,7 @@ const initialState = {
 
 export const fetchPopularCaruselData = createAsyncThunk('popularData/fetchPopularCaruselData', async (type) => {
   const sortBy = 'popularity.desc';
-  const url = `${REACT_APP_DB_URL}${getDefaultQuery(sortBy, type)}`;
-  const response = await getData(url);
+  const response = await getData(getDefaultQuery(sortBy, type));
   return response.data;
 });
 
