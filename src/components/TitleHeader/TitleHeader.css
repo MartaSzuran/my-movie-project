@@ -1,12 +1,14 @@
 .titleHeaderStyle {
   height: 200px;
   width: 90%;
-  background: var(--basic-blue);
   margin: auto;
   padding: 40px 24px 30px 30px;
   display: flex;
   flex-direction: column;
   color: var(--bluish-white);
+  background-image: url('https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/8bcoRX3hQRHufLPSDREdvr3YMXx.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .titleHeaderSearchContainerStyle {
@@ -37,7 +39,7 @@
   width: 200px;
   font-size: 20px;
   font-weight: bold;
-  background: var(--light-blue);
+  background: var(--a-bit-darker-blue);
   color: var(--bluish-white);
   position: relative;
   left: -30px;
@@ -49,5 +51,5 @@
 }
 
 .titleHeaderButtonSearchStyle:active, .titleHeaderButtonSearchStyle:hover {
-  color: var(--darker-blue);
+  color: var(--light-blue);
 }

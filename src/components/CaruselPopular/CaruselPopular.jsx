@@ -7,7 +7,7 @@ import './CaruselPopular.css';
 function CaruselPopular({
   switchTitle,
   handleSwitchTitleChange,
-  movies,
+  dataPopular,
 }) {
   return (
     <Box className="caruselContainer">
@@ -16,7 +16,8 @@ function CaruselPopular({
         handleSwitchTitleChange={handleSwitchTitleChange}
       />
       <CaruselBody
-        movies={movies}
+        dataPopular={dataPopular}
+        switchTitle={switchTitle}
       />
     </Box>
   );
@@ -25,11 +26,13 @@ function CaruselPopular({
 CaruselPopular.propTypes = {
   switchTitle: PropTypes.string,
   handleSwitchTitleChange: PropTypes.func.isRequired,
-  movies: PropTypes.arrayOf(
+  dataPopular: PropTypes.arrayOf(
     PropTypes.shape({
       poster_path: PropTypes.string.isRequired,
       title: PropTypes.string,
+      name: PropTypes.string,
       release_date: PropTypes.string,
+      first_air_date: PropTypes.string,
       vote_average: PropTypes.number,
     }),
   ),
@@ -37,9 +40,11 @@ CaruselPopular.propTypes = {
 
 CaruselPopular.defaultProps = {
   switchTitle: '',
-  movies: [{
+  dataPopular: [{
     title: '',
+    name: '',
     release_date: '',
+    first_air_date: '',
     vote_average: 0,
   }],
 };

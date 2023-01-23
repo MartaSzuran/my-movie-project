@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import moviesSlice from '../slices/moviesSlice';
+import popularDataSlice from '../slices/popularDataSlice';
 
 export default configureStore({
   reducer: {
-    movies: moviesSlice,
+    popularData: popularDataSlice,
   },
 });

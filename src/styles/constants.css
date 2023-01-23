@@ -2,9 +2,15 @@
   /* colors */
   --light-blue: #18b8db;
   --basic-blue: #00a0dd;
+  --a-bit-darker-blue: #306397;
   --darker-blue: #042445;
   --bluish-white: #faffff;
   --light-black: #00000099;
+  --light-green: #31bd86;
+  --dark-grey: #645770;
+  --darker-white: #e2e2df;
+  --light-yellow: #d2d531;
+  --dark-pink: #bd3160;
 
   /* fonts */
   --main-font-family: 'Source Sans Pro', Arial, sans-serif;
