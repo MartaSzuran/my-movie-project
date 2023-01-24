@@ -12,7 +12,7 @@ function CardBasic({
   voteAverage,
 }) {
   const checkPopularityValue = () => {
-    const percentagePopularityValue = voteAverage * 10;
+    const percentagePopularityValue = Math.floor(voteAverage * 10);
     if (percentagePopularityValue >= 70) {
       return (
         <CircularProgressbar

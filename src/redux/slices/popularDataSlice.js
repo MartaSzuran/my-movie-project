@@ -9,8 +9,9 @@ const initialState = {
 };
 
 export const fetchPopularCaruselData = createAsyncThunk('popularData/fetchPopularCaruselData', async (type) => {
+  const mainPopularQuery = '3/discover/';
   const sortBy = 'popularity.desc';
-  const response = await getData(getDefaultQuery(sortBy, type));
+  const response = await getData(getDefaultQuery(mainPopularQuery, type, sortBy));
   return response.data;
 });
 
