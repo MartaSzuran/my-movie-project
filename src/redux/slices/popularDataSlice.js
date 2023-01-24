@@ -9,11 +9,11 @@ const initialState = {
 };
 
 export const fetchPopularCaruselData = createAsyncThunk('popularData/fetchPopularCaruselData', async (type) => {
-  const mainPopularQuery = `discover/${type}`;
+  const otherUrlPart = `discover/${type}`;
   const sortBy = 'popularity.desc';
   const pages = '1';
-  const otherUrlPart = `&language=en-US&sort_by=${sortBy}&include_adult=false&include_video=false&page=${pages}&with_watch_monetization_types=flatrate&append_to_response=images&include_image_language=en`;
-  const response = await getData(getDefaultQuery(mainPopularQuery, otherUrlPart));
+  const popularQuery = `&language=en-US${sortBy && `sort_by=${sortBy}`}&include_adult=false&include_video=false&page=${pages}&with_watch_monetization_types=flatrate&append_to_response=images&include_image_language=en`;
+  const response = await getData(getDefaultQuery(otherUrlPart, popularQuery));
   return response.data;
 });
 
