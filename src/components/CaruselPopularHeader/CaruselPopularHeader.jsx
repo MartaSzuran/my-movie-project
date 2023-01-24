@@ -1,9 +1,9 @@
 import { PropTypes } from 'prop-types';
 import { Box, Tab, Tabs } from '@mui/material';
 import switchTitlesPopularity from '../../constants/switchTitlesPopularity';
-import './CaruselHeader.css';
+import './CaruselPopularHeader.css';
 
-function CaruselHeader({
+function CaruselPopularHeader({
   switchTitle,
   handleSwitchTitleChange,
 }) {
@@ -27,13 +27,13 @@ function CaruselHeader({
   );
 }
 
-CaruselHeader.propTypes = {
+CaruselPopularHeader.propTypes = {
   switchTitle: PropTypes.string,
   handleSwitchTitleChange: PropTypes.func.isRequired,
 };
 
-CaruselHeader.defaultProps = {
+CaruselPopularHeader.defaultProps = {
   switchTitle: '',
 };
 
-export default CaruselHeader;
+export default CaruselPopularHeader;

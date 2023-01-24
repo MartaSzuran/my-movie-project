@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import CardBasic from '../CardBasic/CardBasic';
 import { switchMoviesTitle } from '../../constants/switchTitlesPopularity';
 import CaruselLoader from '../CaruselLoader/CaruselLoader';
-import './CaruselBody.css';
+import './CaruselPopularBody.css';
 
-function CaruselBody({ dataPopular, switchTitle }) {
+function CaruselPopularBody({ dataPopular, switchTitle }) {
   const caruselLoading = useSelector((state) => state.popularData.isLoading);
 
   const checkPopularDataType = () => {
@@ -57,7 +57,7 @@ function CaruselBody({ dataPopular, switchTitle }) {
   );
 }
 
-CaruselBody.propTypes = {
+CaruselPopularBody.propTypes = {
   switchTitle: PropTypes.string,
   dataPopular: PropTypes.arrayOf(
     PropTypes.shape({
@@ -71,7 +71,7 @@ CaruselBody.propTypes = {
   ),
 };
 
-CaruselBody.defaultProps = {
+CaruselPopularBody.defaultProps = {
   switchTitle: '',
   dataPopular: [{
     title: '',
@@ -82,4 +82,4 @@ CaruselBody.defaultProps = {
   }],
 };
 
-export default CaruselBody;
+export default CaruselPopularBody;

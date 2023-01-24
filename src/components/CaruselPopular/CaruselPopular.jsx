@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { Box } from '@mui/material';
-import CaruselHeader from '../CaruselHeader/CaruselHeader';
-import CaruselBody from '../CaruselBody/CaruselBody';
+import CaruselPopularHeader from '../CaruselPopularHeader/CaruselPopularHeader';
+import CaruselPopularBody from '../CaruselPopularBody/CaruselPopularBody';
 import './CaruselPopular.css';
 
 function CaruselPopular({
@@ -11,11 +11,11 @@ function CaruselPopular({
 }) {
   return (
     <Box className="caruselContainer">
-      <CaruselHeader
+      <CaruselPopularHeader
         switchTitle={switchTitle}
         handleSwitchTitleChange={handleSwitchTitleChange}
       />
-      <CaruselBody
+      <CaruselPopularBody
         dataPopular={dataPopular}
         switchTitle={switchTitle}
       />
