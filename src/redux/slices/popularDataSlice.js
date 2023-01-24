@@ -9,9 +9,11 @@ const initialState = {
 };
 
 export const fetchPopularCaruselData = createAsyncThunk('popularData/fetchPopularCaruselData', async (type) => {
-  const mainPopularQuery = '3/discover/';
+  const mainPopularQuery = `discover/${type}`;
   const sortBy = 'popularity.desc';
-  const response = await getData(getDefaultQuery(mainPopularQuery, type, sortBy));
+  const pages = '1';
+  const otherUrlPart = `&language=en-US&sort_by=${sortBy}&include_adult=false&include_video=false&page=${pages}&with_watch_monetization_types=flatrate&append_to_response=images&include_image_language=en`;
+  const response = await getData(getDefaultQuery(mainPopularQuery, otherUrlPart));
   return response.data;
 });
 
