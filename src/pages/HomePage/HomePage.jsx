@@ -38,9 +38,9 @@ export default function HomePage() {
 
   const checkNewSwitchTrendingType = (newTitleValue) => {
     if (newTitleValue === switchTrendingWeekTitle.name) {
-      return setSwitchTrendingTitleType(switchTrendingDayTitle.type);
+      return setSwitchTrendingTitleType(switchTrendingWeekTitle.type);
     }
-    return setSwitchTrendingTitleType(switchTrendingWeekTitle.type);
+    return setSwitchTrendingTitleType(switchTrendingDayTitle.type);
   };
 
   useEffect(() => {

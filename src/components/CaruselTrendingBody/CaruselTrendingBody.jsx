@@ -3,7 +3,6 @@ import { Box } from '@mui/material';
 import { useSelector } from 'react-redux';
 import CardBasic from '../CardBasic/CardBasic';
 import CaruselLoader from '../CaruselLoader/CaruselLoader';
-import './CaruselTrendingBody.css';
 
 function CaruselTrendingBody({ dataTrending }) {
   const caruselLoading = useSelector((state) => state.popularData.isLoading);

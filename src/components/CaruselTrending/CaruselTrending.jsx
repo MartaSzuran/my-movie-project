@@ -2,7 +2,6 @@ import { PropTypes } from 'prop-types';
 import { Box } from '@mui/material';
 import CaruselTrendingHeader from '../CaruselTrendingHeader/CaruselTrendingHeader';
 import CaruselTrendingBody from '../CaruselTrendingBody/CaruselTrendingBody';
-import './CaruselTrending.css';
 
 function CaruselTrending({
   switchTrendingTitle,

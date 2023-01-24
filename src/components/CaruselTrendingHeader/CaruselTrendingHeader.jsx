@@ -1,13 +1,12 @@
 import { PropTypes } from 'prop-types';
 import { Box, Tab, Tabs } from '@mui/material';
 import switchTitlesTrending from '../../constants/switchTitlesTrending';
-import './CaruselTrendingHeader.css';
 
 function CaruselTrendingHeader({
   switchTrendingTitle,
   handleSwitchTitleTrendingChange,
 }) {
-  const caruselTitle = "What's popular";
+  const caruselTitle = 'Trending';
 
   return (
     <Box className="caruselHeader">
