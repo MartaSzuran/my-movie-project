@@ -10,7 +10,7 @@ const initialState = {
 
 export const fetchTrendingCaruselData = createAsyncThunk('trendingData/fetchTrendingCaruselData', async (type) => {
   const otherUrlPart = `trending/movie/${type}`;
-  const trendingQuery = '&language=en-US&include_adult=false&include_video=false&with_watch_monetization_types=flatrate&append_to_response=images&include_image_language=en';
+  const trendingQuery = '&include_video=false&with_watch_monetization_types=flatrate&append_to_response=images&include_image_language=en';
   const response = await getData(getDefaultQuery(otherUrlPart, trendingQuery));
   return response.data;
 });

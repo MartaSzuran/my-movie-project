@@ -1,20 +1,17 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchSearchData } from './redux/slices/searchDataSlice';
+import { useNavigate } from 'react-router-dom';
 import AppRoutes from './AppRoutes/AppRoutes';
-import { MOVIES } from './constants/searchTypes';
 import MainHeader from './components/MainHeader/MainHeader';
 import TitleHeader from './components/TitleHeader/TitleHeader';
 import Footer from './components/Footer/Footer';
 import './App.css';
 
 function App() {
-  const dispatch = useDispatch();
-  const searchType = MOVIES;
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleClickSearchButton = () => {
-    dispatch(fetchSearchData({ searchQuery, searchType }));
+  const onClickSearchButton = () => {
+    navigate(`/search?query=${searchQuery}`);
   };
 
   return (
@@ -23,7 +20,7 @@ function App() {
       <TitleHeader
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        handleClickSearchButton={handleClickSearchButton}
+        onClickSearchButton={onClickSearchButton}
       />
       <div className="mainContainer">
         <AppRoutes />

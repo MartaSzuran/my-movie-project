@@ -2,11 +2,7 @@ import { Box, Typography, Input } from '@mui/material';
 import { PropTypes } from 'prop-types';
 import './TitleHeader.css';
 
-function TitleHeader({ searchQuery, setSearchQuery, handleClickSearchButton }) {
-  const handleInputOnChange = ({ target: { value } }) => {
-    setSearchQuery(value);
-  };
-
+function TitleHeader({ searchQuery, setSearchQuery, onClickSearchButton }) {
   return (
     <Box className="titleHeaderStyle">
       <Typography variant="h4">Welcome.</Typography>
@@ -15,10 +11,15 @@ function TitleHeader({ searchQuery, setSearchQuery, handleClickSearchButton }) {
         <Input
           placeholder="Search for a movie, TV Show, person ..."
           value={searchQuery}
-          onChange={handleInputOnChange}
+          onChange={({ target: { value } }) => setSearchQuery(value)}
           className="searchInput titleHeader"
         />
-        <button type="button" className="titleHeaderButtonSearchStyle" onClick={handleClickSearchButton}>
+        <button
+          type="button"
+          className="titleHeaderButtonSearchStyle"
+          onClick={onClickSearchButton}
+          disabled={!searchQuery}
+        >
           Search
         </button>
       </Box>
@@ -29,7 +30,7 @@ function TitleHeader({ searchQuery, setSearchQuery, handleClickSearchButton }) {
 TitleHeader.propTypes = {
   searchQuery: PropTypes.string,
   setSearchQuery: PropTypes.func.isRequired,
-  handleClickSearchButton: PropTypes.func.isRequired,
+  onClickSearchButton: PropTypes.func.isRequired,
 };
 
 TitleHeader.defaultProps = {

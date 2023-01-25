@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { redirect } from 'react-router-dom';
 import getDefaultQuery from '../../utils/defaultApiQueryParams';
 import getData from '../../api/index';
 
@@ -11,7 +10,7 @@ const initialState = {
 
 export const fetchSearchData = createAsyncThunk('searchData/fetchSearchData', async ({ searchQuery, searchType }) => {
   const otherUrlPart = `search/${searchType}`;
-  const searchQueryValue = `&language=en-US&query=${searchQuery}&page=1&include_adult=false`;
+  const searchQueryValue = `&query=${searchQuery}&page=1`;
   const response = await getData(getDefaultQuery(otherUrlPart, searchQueryValue));
   return response.data;
 });
@@ -25,9 +24,6 @@ const searchDataSlice = createSlice({
       .addCase(fetchSearchData.fulfilled, (state, action) => {
         state.isLoading = false;
         state.searchData = action.payload.results;
-      })
-      .addCase(fetchSearchData.pending, (state, action) => {
-        redirect('/search');
       });
   },
 });
