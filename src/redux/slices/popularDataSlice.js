@@ -12,7 +12,7 @@ export const fetchPopularCaruselData = createAsyncThunk('popularData/fetchPopula
   const otherUrlPart = `discover/${type}`;
   const sortBy = 'popularity.desc';
   const pages = '1';
-  const popularQuery = `&language=en-US${sortBy && `sort_by=${sortBy}`}&include_adult=false&include_video=false&page=${pages}&with_watch_monetization_types=flatrate&append_to_response=images&include_image_language=en`;
+  const popularQuery = `&${sortBy && `sort_by=${sortBy}`}&include_video=false&page=${pages}&with_watch_monetization_types=flatrate&append_to_response=images&include_image_language=en`;
   const response = await getData(getDefaultQuery(otherUrlPart, popularQuery));
   return response.data;
 });
