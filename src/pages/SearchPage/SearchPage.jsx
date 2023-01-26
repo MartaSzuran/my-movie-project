@@ -29,7 +29,11 @@ export default function SearchPage() {
   const [searchType, setSearchType] = useState(MOVIES);
 
   const handleOnChangeInputSearchField = ({ target: { value } }) => {
-    setSearchQueryParams(`query=${value}`);
+    if (!value) {
+      setSearchQueryParams('');
+    } else {
+      setSearchQueryParams(`query=${value}`);
+    }
     setSearchQuery(value);
   };
 
@@ -63,8 +67,8 @@ export default function SearchPage() {
           <SearchIcon />
           <Input
             value={searchQuery}
-            onChange={(e) => handleOnChangeInputSearchField(e)}
-            onKeyUp={(e) => handleOnPressEnter(e)}
+            onChange={handleOnChangeInputSearchField}
+            onKeyUp={handleOnPressEnter}
             id="searchInput"
           />
         </Box>
@@ -86,7 +90,7 @@ export default function SearchPage() {
           ))}
         </Box>
         <Box className="searchResultsContainer">
-          {!Object.keys(searchData).length
+          {!searchData
             ? <Typography variant="h6">There are no movies that matched your query.</Typography>
             : <div>my cards</div>}
         </Box>
