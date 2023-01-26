@@ -1,14 +1,14 @@
 import queryString from 'query-string';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import {
   Box,
   Typography,
+  Input,
   Button,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { DebounceInput } from 'react-debounce-input';
 import ClearIcon from '@mui/icons-material/Clear';
 import { fetchSearchData, selectAllSeachData } from '../../redux/slices/searchDataSlice';
 import {
@@ -21,41 +21,50 @@ import './SearchPage.css';
 
 export default function SearchPage() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const searchData = useSelector(selectAllSeachData);
 
   const { query } = queryString.parse(window.location.search);
+  const [, setSearchQueryParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(query);
   const [searchType, setSearchType] = useState(MOVIES);
 
   const handleOnChangeInputSearchField = ({ target: { value } }) => {
+    setSearchQueryParams(`query=${value}`);
     setSearchQuery(value);
-    navigate(`/search?query=${searchQuery}`);
   };
 
-  const handleOnClick = (id) => {
-    if (id === 'Tv') {
-      return setSearchType(TV);
+  const handleOnPressEnter = ({ key }) => {
+    if (key === 'Enter') {
+      dispatch(fetchSearchData({ searchQuery, searchType }));
     }
-    if (id === 'Person') {
-      return setSearchType(PEOPLE);
+  };
+
+  const handleOnClick = (type) => {
+    switch (type.toLowerCase()) {
+      case (TV):
+        setSearchType(TV);
+        break;
+      case (PEOPLE):
+        setSearchType(PEOPLE);
+        break;
+      default:
+        setSearchType(MOVIES);
     }
-    return setSearchType(MOVIES);
   };
 
   useEffect(() => {
     dispatch(fetchSearchData({ searchQuery, searchType }));
-  }, [searchQuery, searchType]);
+  }, [searchType]);
 
   return (
     <Box className="searchPageContainer">
       <Box className="searchInputTitle">
         <Box className="searchleft">
           <SearchIcon />
-          <DebounceInput
+          <Input
             value={searchQuery}
-            onChange={handleOnChangeInputSearchField}
-            debounceTimeout={300}
+            onChange={(e) => handleOnChangeInputSearchField(e)}
+            onKeyUp={(e) => handleOnPressEnter(e)}
             id="searchInput"
           />
         </Box>
@@ -69,8 +78,7 @@ export default function SearchPage() {
           {searchTypesArray.map((type) => (
             <Button
               key={type}
-              id={type}
-              onClick={({ target: { id } }) => handleOnClick(id)}
+              onClick={() => handleOnClick(type)}
               className="resultsMenu button"
             >
               {type}
@@ -78,7 +86,9 @@ export default function SearchPage() {
           ))}
         </Box>
         <Box className="searchResultsContainer">
-          my cards
+          {!Object.keys(searchData).length
+            ? <Typography variant="h6">There are no movies that matched your query.</Typography>
+            : <div>my cards</div>}
         </Box>
       </Box>
     </Box>

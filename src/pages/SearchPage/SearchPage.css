@@ -15,6 +15,7 @@
 }
 
 .searchleft {
+  min-width: 1200px;
   display: flex;
   align-items: center;
   gap: 13px;
@@ -25,12 +26,21 @@
   color: var(--light-grey);
   font-size: 20px;
   border: none;
+  min-width: 1000px;
 }
 
 #searchInput:focus-visible{
   color: var(--light-grey);
   font-size: 20px;
-  outline-color: transparent;
+}
+
+/* remove deafult border bottom style  */
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.css-q0jhri-MuiInputBase-root-MuiInput-root:before {
+  border-bottom: 0px;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.css-q0jhri-MuiInputBase-root-MuiInput-root:after {
+  border-bottom: 0px;
 }
 
 .searchPage.clearButton {
