@@ -1,4 +1,5 @@
 .caruselContainer {
+  margin: 30px 47px 0px 47px;
   height: fit-content;
   display: flex;
   flex-direction: column;
