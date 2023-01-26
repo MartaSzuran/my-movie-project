@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import CaruselPopular from '../../components/CaruselPopular/CaruselPopular';
 import CaruselTrending from '../../components/CaruselTrending/CaruselTrending';
+import TitleHeader from '../../components/TitleHeader/TitleHeader';
 import { selectAllPopularCaruselData, fetchPopularCaruselData } from '../../redux/slices/popularDataSlice';
 import { switchMoviesTitle, switchOnTvTitle } from '../../constants/switchTitlesPopularity';
 import { selectAllTrendingCaruselData, fetchTrendingCaruselData } from '../../redux/slices/trendingDataSlice';
@@ -18,6 +20,13 @@ export default function HomePage() {
   const [switchTrendingTitle, setSwitchTrendingTitle] = useState(switchTrendingDayTitle.name);
   const [switchTrendingTitleType,
     setSwitchTrendingTitleType] = useState(switchTrendingDayTitle.type);
+
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const onClickSearchButton = () => {
+    navigate(`/search?query=${searchQuery}`);
+  };
 
   const handleSwitchTitleChange = (_, newTitleValue) => {
     setSwitchTitle(newTitleValue);
@@ -53,6 +62,11 @@ export default function HomePage() {
 
   return (
     <div>
+      <TitleHeader
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        onClickSearchButton={onClickSearchButton}
+      />
       <CaruselPopular
         switchTitle={switchTitle}
         handleSwitchTitleChange={handleSwitchTitleChange}
