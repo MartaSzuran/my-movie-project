@@ -50,6 +50,10 @@
   padding: 0px;
 }
 
+.searchPage.clearButton.hidden {
+  visibility: hidden;
+}
+
 .searchPage.clearButton.css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
   background-color: white;
   color: var(--dark-grey);

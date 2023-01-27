@@ -28,7 +28,6 @@ export default function SearchPage() {
   const [, setSearchQueryParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(query);
   const [searchType, setSearchType] = useState(MOVIES);
-
   const handleOnChangeInputSearchField = ({ target: { value } }) => {
     if (!value) {
       setSearchQueryParams('');
@@ -57,47 +56,6 @@ export default function SearchPage() {
     }
   };
 
-  const checkSearchDataType = () => {
-    if (searchType === MOVIES) {
-      return (
-        searchData.map(({
-          id,
-          poster_path: posterPath,
-          release_date: releaseDate,
-          title,
-          overview,
-        }) => (
-          <SearchPageCard
-            key={id}
-            posterPath={posterPath}
-            title={title}
-            overview={overview}
-            releaseDate={releaseDate}
-          />
-        )));
-    }
-    if (searchType === TV) {
-      return (
-        searchData.map(({
-          id,
-          poster_path: posterPath,
-          name,
-          first_air_date: releaseDate,
-          overview,
-        }) => (
-          <SearchPageCard
-            key={id}
-            posterPath={posterPath}
-            title={name}
-            releaseDate={releaseDate}
-            overview={overview}
-          />
-        ))
-      );
-    }
-    return <div>hi</div>;
-  };
-
   useEffect(() => {
     dispatch(fetchSearchData({ searchQuery, searchType }));
   }, [searchType]);
@@ -114,7 +72,7 @@ export default function SearchPage() {
             id="searchInput"
           />
         </Box>
-        <Button className="searchPage clearButton">
+        <Button className={searchQuery ? 'searchPage clearButton' : 'searchPage clearButton hidden'}>
           <ClearIcon />
         </Button>
       </Box>
@@ -134,7 +92,31 @@ export default function SearchPage() {
         <Box className="searchResultsContainer">
           {!searchData
             ? <Typography variant="h6">There are no movies that matched your query.</Typography>
-            : checkSearchDataType()}
+            : searchData.map(({
+              id,
+              poster_path: posterPath,
+              profile_path: profilePath,
+              release_date: releaseDate,
+              first_air_date: firstAirDate,
+              title,
+              overview,
+              name,
+              known_for: knownFor,
+              known_for_department: knownForDepartment,
+            }) => (
+              <SearchPageCard
+                key={id}
+                posterPath={posterPath}
+                profilePath={profilePath}
+                title={title}
+                name={name}
+                releaseDate={releaseDate}
+                firstAirDate={firstAirDate}
+                overview={overview}
+                knownFor={knownFor}
+                knownForDepartment={knownForDepartment}
+              />
+            ))}
         </Box>
       </Box>
     </Box>
