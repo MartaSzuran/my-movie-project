@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
+import SearchPageCard from '../../components/SearchPageCard/SearchPageCard';
 import { fetchSearchData, selectAllSeachData } from '../../redux/slices/searchDataSlice';
 import {
   MOVIES,
@@ -43,7 +44,7 @@ export default function SearchPage() {
     }
   };
 
-  const handleOnClick = (type) => {
+  const handleOnClicktResultsMenuButton = (type) => {
     switch (type.toLowerCase()) {
       case (TV):
         setSearchType(TV);
@@ -54,6 +55,47 @@ export default function SearchPage() {
       default:
         setSearchType(MOVIES);
     }
+  };
+
+  const checkSearchDataType = () => {
+    if (searchType === MOVIES) {
+      return (
+        searchData.map(({
+          id,
+          poster_path: posterPath,
+          release_date: releaseDate,
+          title,
+          overview,
+        }) => (
+          <SearchPageCard
+            key={id}
+            posterPath={posterPath}
+            title={title}
+            overview={overview}
+            releaseDate={releaseDate}
+          />
+        )));
+    }
+    if (searchType === TV) {
+      return (
+        searchData.map(({
+          id,
+          poster_path: posterPath,
+          name,
+          first_air_date: releaseDate,
+          overview,
+        }) => (
+          <SearchPageCard
+            key={id}
+            posterPath={posterPath}
+            title={name}
+            releaseDate={releaseDate}
+            overview={overview}
+          />
+        ))
+      );
+    }
+    return <div>hi</div>;
   };
 
   useEffect(() => {
@@ -78,12 +120,12 @@ export default function SearchPage() {
       </Box>
       <Box className="mainContentContainer">
         <Box className="searchResultsManu">
-          <Typography variant="h5" className="resultsMenu header">Search Results</Typography>
+          <Typography variant="h6" className="resultsMenu header">Search Results</Typography>
           {searchTypesArray.map((type) => (
             <Button
               key={type}
-              onClick={() => handleOnClick(type)}
-              className="resultsMenu button"
+              onClick={() => handleOnClicktResultsMenuButton(type)}
+              className={type.toLowerCase() === searchType ? 'resultsMenu button selected' : 'resultsMenu button'}
             >
               {type}
             </Button>
@@ -92,7 +134,7 @@ export default function SearchPage() {
         <Box className="searchResultsContainer">
           {!searchData
             ? <Typography variant="h6">There are no movies that matched your query.</Typography>
-            : <div>my cards</div>}
+            : checkSearchDataType()}
         </Box>
       </Box>
     </Box>
