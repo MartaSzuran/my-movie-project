@@ -54,7 +54,12 @@ function SearchPageCard({
           )
           : (
             <Typography className="searchCardOverView">
-              {knownFor.map((movie) => <span key={nanoid()}>{movie.title}</span>)}
+              {knownFor.map((movie) => (
+                <span key={nanoid()}>
+                  ••
+                  {movie.title}
+                </span>
+              ))}
             </Typography>
           )}
       </Box>
