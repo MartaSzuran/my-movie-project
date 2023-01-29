@@ -43,6 +43,11 @@ export default function SearchPage() {
     }
   };
 
+  const handleOnClickClearButton = () => {
+    setSearchQueryParams('');
+    setSearchQuery('');
+  };
+
   const handleOnClicktResultsMenuButton = (type) => {
     switch (type.toLowerCase()) {
       case (TV):
@@ -72,7 +77,7 @@ export default function SearchPage() {
             id="searchInput"
           />
         </Box>
-        <Button className={searchQuery ? 'searchPage clearButton' : 'searchPage clearButton hidden'}>
+        <Button className={searchQuery ? 'searchPage clearButton' : 'searchPage clearButton hidden'} onClick={handleOnClickClearButton}>
           <ClearIcon />
         </Button>
       </Box>
