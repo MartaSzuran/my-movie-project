@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
+import SearchPageCard from '../../components/SearchPageCard/SearchPageCard';
 import { fetchSearchData, selectAllSeachData } from '../../redux/slices/searchDataSlice';
 import {
   MOVIES,
@@ -27,7 +28,6 @@ export default function SearchPage() {
   const [, setSearchQueryParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(query);
   const [searchType, setSearchType] = useState(MOVIES);
-
   const handleOnChangeInputSearchField = ({ target: { value } }) => {
     if (!value) {
       setSearchQueryParams('');
@@ -43,7 +43,12 @@ export default function SearchPage() {
     }
   };
 
-  const handleOnClick = (type) => {
+  const handleOnClickClearButton = () => {
+    setSearchQueryParams('');
+    setSearchQuery('');
+  };
+
+  const handleOnClicktResultsMenuButton = (type) => {
     switch (type.toLowerCase()) {
       case (TV):
         setSearchType(TV);
@@ -72,18 +77,18 @@ export default function SearchPage() {
             id="searchInput"
           />
         </Box>
-        <Button className="searchPage clearButton">
+        <Button className={searchQuery ? 'searchPage clearButton' : 'searchPage clearButton hidden'} onClick={handleOnClickClearButton}>
           <ClearIcon />
         </Button>
       </Box>
       <Box className="mainContentContainer">
         <Box className="searchResultsManu">
-          <Typography variant="h5" className="resultsMenu header">Search Results</Typography>
+          <Typography variant="h6" className="resultsMenu header">Search Results</Typography>
           {searchTypesArray.map((type) => (
             <Button
               key={type}
-              onClick={() => handleOnClick(type)}
-              className="resultsMenu button"
+              onClick={() => handleOnClicktResultsMenuButton(type)}
+              className={type.toLowerCase() === searchType ? 'resultsMenu button selected' : 'resultsMenu button'}
             >
               {type}
             </Button>
@@ -92,7 +97,28 @@ export default function SearchPage() {
         <Box className="searchResultsContainer">
           {!searchData
             ? <Typography variant="h6">There are no movies that matched your query.</Typography>
-            : <div>my cards</div>}
+            : searchData.map(({
+              id,
+              poster_path: posterPath,
+              profile_path: profilePath,
+              release_date: releaseDate,
+              first_air_date: firstAirDate,
+              title,
+              overview,
+              name,
+              known_for: knownFor,
+              known_for_department: knownForDepartment,
+            }) => (
+              <SearchPageCard
+                key={id}
+                imagePath={posterPath || profilePath}
+                title={title || name}
+                releaseDate={releaseDate || firstAirDate}
+                overview={overview}
+                knownFor={knownFor}
+                knownForDepartment={knownForDepartment}
+              />
+            ))}
         </Box>
       </Box>
     </Box>
