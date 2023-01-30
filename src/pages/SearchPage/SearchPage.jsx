@@ -111,12 +111,9 @@ export default function SearchPage() {
             }) => (
               <SearchPageCard
                 key={id}
-                posterPath={posterPath}
-                profilePath={profilePath}
-                title={title}
-                name={name}
-                releaseDate={releaseDate}
-                firstAirDate={firstAirDate}
+                imagePath={posterPath || profilePath}
+                title={title || name}
+                releaseDate={releaseDate || firstAirDate}
                 overview={overview}
                 knownFor={knownFor}
                 knownForDepartment={knownForDepartment}

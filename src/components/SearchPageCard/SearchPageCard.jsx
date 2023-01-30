@@ -6,23 +6,20 @@ import PHOTOURL from '../../constants/photosBasicUrl';
 import './SearchPageCard.css';
 
 function SearchPageCard({
-  posterPath,
-  profilePath,
+  imagePath,
   title,
-  name,
   releaseDate,
-  firstAirDate,
   overview,
   knownFor,
   knownForDepartment,
 }) {
   return (
     <Box className="searchCardContainer">
-      {posterPath || profilePath
+      {imagePath
         ? (
           <img
             className="searchCardImage"
-            src={`${PHOTOURL}${posterPath || profilePath}`}
+            src={`${PHOTOURL}${imagePath}`}
             alt={title}
           />
         )
@@ -33,12 +30,12 @@ function SearchPageCard({
         )}
       <Box className="searchCardDescription">
         <Typography variant="h6" className="searchCardTitle">
-          {title || name}
+          {title}
         </Typography>
-        {releaseDate || firstAirDate
+        {releaseDate
           ? (
             <Typography className="searchCard subtitle">
-              {releaseDate || firstAirDate}
+              {releaseDate}
             </Typography>
           )
           : (
@@ -68,13 +65,10 @@ function SearchPageCard({
 }
 
 SearchPageCard.propTypes = {
-  posterPath: PropTypes.string,
-  profilePath: PropTypes.string,
+  imagePath: PropTypes.string,
   title: PropTypes.string,
-  name: PropTypes.string,
   overview: PropTypes.string,
   releaseDate: PropTypes.string,
-  firstAirDate: PropTypes.string,
   knownFor: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
@@ -85,12 +79,9 @@ SearchPageCard.propTypes = {
 
 SearchPageCard.defaultProps = {
   title: '',
-  name: '',
-  posterPath: '',
-  profilePath: '',
+  imagePath: '',
   overview: '',
   releaseDate: '',
-  firstAirDate: '',
   knownFor: [{
     title: '',
   }],
