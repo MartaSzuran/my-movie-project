@@ -14,9 +14,10 @@ function SearchPageCard({
   overview,
   knownFor,
   knownForDepartment,
+  searchType,
 }) {
   return (
-    <Link to={`movie/${id}`}>
+    <Link to={`${searchType}/${id}`}>
       <Box className="searchCardContainer">
         {imagePath
           ? (
@@ -80,6 +81,7 @@ SearchPageCard.propTypes = {
     }),
   ),
   knownForDepartment: PropTypes.string,
+  searchType: PropTypes.string,
 };
 
 SearchPageCard.defaultProps = {
@@ -92,6 +94,7 @@ SearchPageCard.defaultProps = {
     title: '',
   }],
   knownForDepartment: '',
+  searchType: '',
 };
 
 export default SearchPageCard;

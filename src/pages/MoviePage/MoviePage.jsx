@@ -1,14 +1,11 @@
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { fetchMovieData } from '../../queries';
+import { useParams, useResolvedPath } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
+import { MOVIES } from '../../constants/searchTypes';
 
 export default function MoviePage() {
   const { movieId } = useParams();
 
-  useEffect(() => {
-    fetchMovieData(movieId);
-  });
-
+  const [movieData, status] = useFetch(MOVIES, movieId);
   return (
     <div>Movie Page</div>
   );

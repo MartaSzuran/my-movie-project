@@ -119,6 +119,7 @@ export default function SearchPage() {
                 overview={overview}
                 knownFor={knownFor}
                 knownForDepartment={knownForDepartment}
+                searchType={searchType}
               />
             ))}
         </Box>
