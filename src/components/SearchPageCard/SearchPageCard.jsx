@@ -1,20 +1,28 @@
 import { PropTypes } from 'prop-types';
 import { Box, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import NoPhotographyIcon from '@mui/icons-material/NoPhotography';
 import { nanoid } from 'nanoid';
 import PHOTOURL from '../../constants/photosBasicUrl';
 import './SearchPageCard.css';
 
 function SearchPageCard({
+  id,
   imagePath,
   title,
   releaseDate,
   overview,
   knownFor,
   knownForDepartment,
+  searchType,
 }) {
+  const navigate = useNavigate();
+  const handleOnSearchCardClick = () => {
+    navigate(`${searchType}/${id}`);
+  };
+
   return (
-    <Box className="searchCardContainer">
+    <Box className="searchCardContainer" onClick={handleOnSearchCardClick}>
       {imagePath
         ? (
           <img
@@ -65,6 +73,7 @@ function SearchPageCard({
 }
 
 SearchPageCard.propTypes = {
+  id: PropTypes.number,
   imagePath: PropTypes.string,
   title: PropTypes.string,
   overview: PropTypes.string,
@@ -75,9 +84,11 @@ SearchPageCard.propTypes = {
     }),
   ),
   knownForDepartment: PropTypes.string,
+  searchType: PropTypes.string,
 };
 
 SearchPageCard.defaultProps = {
+  id: 0,
   title: '',
   imagePath: '',
   overview: '',
@@ -86,6 +97,7 @@ SearchPageCard.defaultProps = {
     title: '',
   }],
   knownForDepartment: '',
+  searchType: '',
 };
 
 export default SearchPageCard;
