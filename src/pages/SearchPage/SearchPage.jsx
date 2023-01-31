@@ -28,6 +28,7 @@ export default function SearchPage() {
   const [, setSearchQueryParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(query);
   const [searchType, setSearchType] = useState(MOVIES);
+
   const handleOnChangeInputSearchField = ({ target: { value } }) => {
     if (!value) {
       setSearchQueryParams('');
@@ -111,6 +112,7 @@ export default function SearchPage() {
             }) => (
               <SearchPageCard
                 key={id}
+                id={id}
                 imagePath={posterPath || profilePath}
                 title={title || name}
                 releaseDate={releaseDate || firstAirDate}

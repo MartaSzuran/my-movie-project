@@ -1,11 +1,13 @@
 import { PropTypes } from 'prop-types';
 import { Box, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import NoPhotographyIcon from '@mui/icons-material/NoPhotography';
 import { nanoid } from 'nanoid';
 import PHOTOURL from '../../constants/photosBasicUrl';
 import './SearchPageCard.css';
 
 function SearchPageCard({
+  id,
   imagePath,
   title,
   releaseDate,
@@ -14,57 +16,60 @@ function SearchPageCard({
   knownForDepartment,
 }) {
   return (
-    <Box className="searchCardContainer">
-      {imagePath
-        ? (
-          <img
-            className="searchCardImage"
-            src={`${PHOTOURL}${imagePath}`}
-            alt={title}
-          />
-        )
-        : (
-          <Box className="noImageContainer">
-            <NoPhotographyIcon className="searchCardNoImage" />
-          </Box>
-        )}
-      <Box className="searchCardDescription">
-        <Typography variant="h6" className="searchCardTitle">
-          {title}
-        </Typography>
-        {releaseDate
+    <Link to={`movie/${id}`}>
+      <Box className="searchCardContainer">
+        {imagePath
           ? (
-            <Typography className="searchCard subtitle">
-              {releaseDate}
-            </Typography>
+            <img
+              className="searchCardImage"
+              src={`${PHOTOURL}${imagePath}`}
+              alt={title}
+            />
           )
           : (
-            <Typography className="searchCard subtitle">
-              {knownForDepartment}
-            </Typography>
+            <Box className="noImageContainer">
+              <NoPhotographyIcon className="searchCardNoImage" />
+            </Box>
           )}
-        {overview
-          ? (
-            <Typography className="searchCardOverView">
-              {overview}
-            </Typography>
-          )
-          : (
-            <Typography className="searchCardOverView">
-              {knownFor.map((movie) => (
-                <span key={nanoid()}>
-                  ••
-                  {movie.title}
-                </span>
-              ))}
-            </Typography>
-          )}
+        <Box className="searchCardDescription">
+          <Typography variant="h6" className="searchCardTitle">
+            {title}
+          </Typography>
+          {releaseDate
+            ? (
+              <Typography className="searchCard subtitle">
+                {releaseDate}
+              </Typography>
+            )
+            : (
+              <Typography className="searchCard subtitle">
+                {knownForDepartment}
+              </Typography>
+            )}
+          {overview
+            ? (
+              <Typography className="searchCardOverView">
+                {overview}
+              </Typography>
+            )
+            : (
+              <Typography className="searchCardOverView">
+                {knownFor.map((movie) => (
+                  <span key={nanoid()}>
+                    ••
+                    {movie.title}
+                  </span>
+                ))}
+              </Typography>
+            )}
+        </Box>
       </Box>
-    </Box>
+    </Link>
   );
 }
 
 SearchPageCard.propTypes = {
+  id: PropTypes.number,
   imagePath: PropTypes.string,
   title: PropTypes.string,
   overview: PropTypes.string,
@@ -78,6 +83,7 @@ SearchPageCard.propTypes = {
 };
 
 SearchPageCard.defaultProps = {
+  id: 0,
   title: '',
   imagePath: '',
   overview: '',
