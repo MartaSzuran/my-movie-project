@@ -2,8 +2,8 @@ import getData from '../api';
 import getDefaultQuery from '../utils/defaultApiQueryParams';
 
 const fetchData = async (dataType, id) => {
-  const otherUrlPart = `${dataType}/${id}`;
-  const response = await getData(getDefaultQuery(otherUrlPart));
+  const query = `${dataType}/${id}`;
+  const response = await getData(getDefaultQuery(query));
   return response.data;
 };
 
