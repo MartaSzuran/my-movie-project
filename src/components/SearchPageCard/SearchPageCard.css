@@ -9,6 +9,11 @@
   box-shadow: 0px 2px 7px 0px var(--super-light-grey);
 }
 
+.searchCardContainer:hover {
+  box-shadow: 0px 0px 16px 10px var(--super-light-grey);  
+  transition: 0.5s;
+}
+
 .searchCardImage {
   max-width: 150px;
   height: 142px;

@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { Box, Typography } from '@mui/material';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import PHOTOURL from '../../constants/photosBasicUrl';
+import { PHOTOURL } from '../../constants/photosBasicUrl';
 import 'react-circular-progressbar/dist/styles.css';
 import './CardBasic.css';
 

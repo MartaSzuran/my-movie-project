@@ -4,7 +4,7 @@ import { PEOPLE } from '../../constants/searchTypes';
 
 export default function PersonPage() {
   const { personId } = useParams();
-  const { personData, isLoading, error } = useFetchDataDetails(PEOPLE, personId);
+  const { data, isLoading, isError } = useFetchDataDetails(PEOPLE, personId);
 
   return (
     <div>person Page</div>
