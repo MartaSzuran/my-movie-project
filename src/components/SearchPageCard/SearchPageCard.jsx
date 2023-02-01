@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import NoPhotographyIcon from '@mui/icons-material/NoPhotography';
 import { nanoid } from 'nanoid';
-import { PHOTOURL } from '../../constants/photosBasicUrl';
+import { PHOTO_URL } from '../../constants/photosBasicUrl';
 import './SearchPageCard.css';
 
 function SearchPageCard({
@@ -27,7 +27,7 @@ function SearchPageCard({
         ? (
           <img
             className="searchCardImage"
-            src={`${PHOTOURL}${imagePath}`}
+            src={`${PHOTO_URL}${imagePath}`}
             alt={title}
           />
         )

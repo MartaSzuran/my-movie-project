@@ -1,14 +1,17 @@
 import { Box, Typography } from '@mui/material';
 import { PropTypes } from 'prop-types';
-import { nanoid } from 'nanoid';
-import PlaylistAddRoundedIcon from '@mui/icons-material/PlaylistAddRounded';
+import ViewListRoundedIcon from '@mui/icons-material/ViewListRounded';
+import GradeRoundedIcon from '@mui/icons-material/GradeRounded';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import { PHOTOURL, BIGPHOTOURL } from '../../constants/photosBasicUrl';
+import { PHOTO_URL, BIG_PHOTO_URL } from '../../constants/photosBasicUrl';
 import 'react-circular-progressbar/dist/styles.css';
 import './DetailPagesHeader.css';
 
 function DetailPagesHeader({
   title,
+  tagline,
   imagePath,
   poster,
   genres,
@@ -69,9 +72,14 @@ function DetailPagesHeader({
   };
 
   return (
-    <Box className="detailHeaderContainer" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${BIGPHOTOURL}${imagePath})` }}>
+    <Box
+      className="detailHeaderContainer"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, -1), rgba(0, 0, 0, 0.8)), url(${BIG_PHOTO_URL}${imagePath})`,
+      }}
+    >
       <img
-        src={`${PHOTOURL}${poster}`}
+        src={`${PHOTO_URL}${poster}`}
         alt={title}
         className="detailHeaderImage"
       />
@@ -85,7 +93,7 @@ function DetailPagesHeader({
           </Typography>
           <Typography>
             {genres.map((genre) => (
-              <span key={nanoid()}>
+              <span key={genre.id}>
                 {' '}
                 {genre.name}
               </span>
@@ -101,9 +109,35 @@ function DetailPagesHeader({
           <Box className="circularHeaderProgressContainer">
             {checkPopularityValue()}
           </Box>
-          <Typography>{'User \n Score'}</Typography>
-          <PlaylistAddRoundedIcon className="addToListIcon Header" />
+          <Typography>
+            User
+            <br />
+            Score
+          </Typography>
+          <Box className="iconActionContainer">
+            <Box className="singleIcon">
+              <ViewListRoundedIcon className="addToListIcon Header" />
+            </Box>
+          </Box>
+          <Box className="iconActionContainer">
+            <Box className="singleIcon">
+              <FavoriteRoundedIcon className="addToListIcon Header" />
+            </Box>
+          </Box>
+          <Box className="iconActionContainer">
+            <Box className="singleIcon">
+              <BookmarkAddRoundedIcon className="addToListIcon Header" />
+            </Box>
+          </Box>
+          <Box className="iconActionContainer">
+            <Box className="singleIcon">
+              <GradeRoundedIcon />
+            </Box>
+          </Box>
         </Box>
+        <Typography className="detailsTagline">{tagline}</Typography>
+        <Typography variant="h6">Overview</Typography>
+        <Typography>{overview}</Typography>
       </Box>
     </Box>
   );
@@ -111,6 +145,7 @@ function DetailPagesHeader({
 
 DetailPagesHeader.propTypes = {
   title: PropTypes.string,
+  tagline: PropTypes.string,
   imagePath: PropTypes.string,
   poster: PropTypes.string,
   genres: PropTypes.arrayOf(
@@ -131,6 +166,7 @@ DetailPagesHeader.propTypes = {
 
 DetailPagesHeader.defaultProps = {
   title: '',
+  tagline: '',
   imagePath: '',
   poster: '',
   genres: [{

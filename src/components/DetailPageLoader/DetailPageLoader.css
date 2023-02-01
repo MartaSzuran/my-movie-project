@@ -1,0 +1,11 @@
+.loaderContainer {
+  margin: 50px;
+}
+
+.inlineLoaders {
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+  gap: 50px;
+  justify-content: center;
+}
