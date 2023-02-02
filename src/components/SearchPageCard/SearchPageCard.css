@@ -12,6 +12,7 @@
 .searchCardContainer:hover {
   box-shadow: 0px 0px 16px 10px var(--super-light-grey);  
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .searchCardImage {

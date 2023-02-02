@@ -71,3 +71,16 @@
   color: var(--darker-white);
   font-style: italic;
 }
+
+.directorInfo {
+  margin-top: 20px;
+}
+
+.directorName.style {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.profession.style {
+  font-size: 13px;
+}

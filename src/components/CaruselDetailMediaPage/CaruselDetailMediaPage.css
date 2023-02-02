@@ -1,0 +1,32 @@
+.caruselHeader.style {
+  margin-left: 20px;
+  margin-bottom: -10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.redirectionCardContainer {
+  min-width: 140px;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.redirectionDetailCaruselCard.style {
+  font-weight: bold;
+}
+
+.redirectionDetailCaruselCard.style:hover {
+  color: var(--dark-grey);
+  cursor: pointer;
+}
+
+.redirectionDetailCaruselFooter.style {
+  margin: 20px;
+}
+
+.redirectionDetailCaruselFooter.style:hover {
+  color: var(--dark-grey);
+  cursor: pointer;
+}

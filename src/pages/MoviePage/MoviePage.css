@@ -1,0 +1,32 @@
+.mainDetailPageContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  margin: auto;
+}
+
+.leftColumnDetails{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 18px
+}
+
+.rightColumnDetails {
+  width: 300px;
+}
+
+.detailCaruselContainer {
+  padding: 2px 4px 0px 3px;
+  border-bottom: 1px solid var(--light-grey);
+  width: 1050px; 
+}
+
+
+.detailSocialContainer {
+  width: 1050px; 
+  height: 500px;
+  border-bottom: 1px solid var(--light-grey);
+}

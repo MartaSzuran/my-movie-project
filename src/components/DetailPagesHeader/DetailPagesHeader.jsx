@@ -5,7 +5,7 @@ import GradeRoundedIcon from '@mui/icons-material/GradeRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import { PHOTO_URL, BIG_PHOTO_URL } from '../../constants/photosBasicUrl';
+import { MEDIUM_PHOTO_URL, BIG_PHOTO_URL } from '../../constants/photosBasicUrl';
 import 'react-circular-progressbar/dist/styles.css';
 import './DetailPagesHeader.css';
 
@@ -19,7 +19,7 @@ function DetailPagesHeader({
   releaseDate,
   popularity,
   runtime,
-  productionCoutries,
+  mediaDirector,
 }) {
   const customizeRuntime = () => {
     const runtimeHoures = Math.floor(runtime / 60);
@@ -79,7 +79,7 @@ function DetailPagesHeader({
       }}
     >
       <img
-        src={`${PHOTO_URL}${poster}`}
+        src={`${MEDIUM_PHOTO_URL}${poster}`}
         alt={title}
         className="detailHeaderImage"
       />
@@ -138,6 +138,10 @@ function DetailPagesHeader({
         <Typography className="detailsTagline">{tagline}</Typography>
         <Typography variant="h6">Overview</Typography>
         <Typography>{overview}</Typography>
+        <Box className="directorInfo">
+          <Typography className="directorName style">{mediaDirector}</Typography>
+          <Typography className="profession style">Director</Typography>
+        </Box>
       </Box>
     </Box>
   );
@@ -157,11 +161,7 @@ DetailPagesHeader.propTypes = {
   releaseDate: PropTypes.string,
   popularity: PropTypes.number,
   runtime: PropTypes.number,
-  productionCoutries: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-    }),
-  ),
+  mediaDirector: PropTypes.string,
 };
 
 DetailPagesHeader.defaultProps = {
@@ -176,9 +176,7 @@ DetailPagesHeader.defaultProps = {
   releaseDate: '',
   popularity: 0,
   runtime: 0,
-  productionCoutries: [{
-    name: '',
-  }],
+  mediaDirector: '',
 };
 
 export default DetailPagesHeader;
