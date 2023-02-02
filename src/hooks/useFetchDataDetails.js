@@ -21,3 +21,13 @@ export function useFetchDataCreditsDetails(dataType, id) {
     isErrorCredits,
   };
 }
+
+export function useFetchDataReviewsDetails(dataType, id) {
+  const query = `${dataType}/${id}/reviews`;
+  const { data, isLoading: isLoadingReviews, error: isErrorReviews } = useQuery('reviews', () => fetchData(query));
+  return {
+    reviewsData: data || {},
+    isLoadingReviews,
+    isErrorReviews,
+  };
+}

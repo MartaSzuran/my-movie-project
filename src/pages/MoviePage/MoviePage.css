@@ -10,7 +10,7 @@
 .leftColumnDetails{
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   margin: 18px
 }
 
@@ -27,6 +27,9 @@
 
 .detailSocialContainer {
   width: 1050px; 
-  height: 500px;
+  height: fit-content;
   border-bottom: 1px solid var(--light-grey);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }

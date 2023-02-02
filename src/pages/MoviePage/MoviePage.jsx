@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
-import { useFetchDataDetails, useFetchDataCreditsDetails } from '../../hooks/useFetchDataDetails';
+import { useFetchDataDetails, useFetchDataCreditsDetails, useFetchDataReviewsDetails } from '../../hooks/useFetchDataDetails';
 import DetailPagesHeader from '../../components/DetailPagesHeader/DetailPagesHeader';
 import DetailPageLoader from '../../components/DetailPageLoader/DetailPageLoader';
 import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/CaruselDetailMediaPage';
 import CaruselLoader from '../../components/CaruselLoader/CaruselLoader';
+import SocialSectionDetailPage from '../../components/SocialSectionDetailPage/SocialSectionDetailPage';
 import { MOVIES } from '../../constants/searchTypes';
 import './MoviePage.css';
 
@@ -17,6 +18,12 @@ export default function MoviePage() {
     isLoadingCredits,
     isErrorCredits,
   } = useFetchDataCreditsDetails(MOVIES, movieId);
+
+  const {
+    reviewsData,
+    isLoadingReviews,
+    isErrorReviews,
+  } = useFetchDataReviewsDetails(MOVIES, movieId);
 
   const {
     title,
@@ -39,6 +46,11 @@ export default function MoviePage() {
   const castMediaInfo = () => {
     const mainCast = creditsData.cast.slice(0, 10);
     return mainCast;
+  };
+
+  const reviewsInfo = () => {
+    const reviews = reviewsData.results;
+    return reviews;
   };
 
   return (
@@ -72,7 +84,13 @@ export default function MoviePage() {
               )}
           </Box>
           <Box className="detailSocialContainer">
-            <Typography>Social</Typography>
+            {!isLoadingReviews
+              ? (
+                <SocialSectionDetailPage />
+              )
+              : (
+                <div>in progress</div>
+              )}
           </Box>
         </Box>
         <Box className="rightColumnDetails">
