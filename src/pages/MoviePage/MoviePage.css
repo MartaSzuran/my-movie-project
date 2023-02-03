@@ -21,11 +21,11 @@
 .detailCaruselContainer {
   padding: 2px 4px 0px 3px;
   border-bottom: 1px solid var(--light-grey);
-  width: 1050px; 
+  width: 950px; 
 }
 
 .detailSocialContainer {
-  width: 1050px; 
+  width: 950px; 
   height: fit-content;
   border-bottom: 1px solid var(--light-grey);
   display: flex;

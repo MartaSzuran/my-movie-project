@@ -1,7 +1,7 @@
 import { Box, Skeleton } from '@mui/material';
-import './DetailPageLoader.css';
+import './DetailPageHeaderLoader.css';
 
-export default function DetailPageLoader() {
+export default function DetailPageHeaderLoader() {
   return (
     <Box className="loaderContainer">
       <Skeleton variant="rounded" animation="wave" height={200} />

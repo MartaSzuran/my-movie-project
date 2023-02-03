@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import { useFetchDataDetails, useFetchDataCreditsDetails, useFetchDataReviewsDetails } from '../../hooks/useFetchDataDetails';
-import DetailPagesHeader from '../../components/DetailPagesHeader/DetailPagesHeader';
-import DetailPageLoader from '../../components/DetailPageLoader/DetailPageLoader';
+import DetailPagesHeader from '../../components/DetailPageHeader/DetailPagesHeader';
+import DetailPageHeaderLoader from '../../components/DetailPageHeaderLoader/DetailPageHeaderLoader';
 import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/CaruselDetailMediaPage';
 import CaruselLoader from '../../components/CaruselLoader/CaruselLoader';
 import SocialSectionDetailPage from '../../components/SocialSectionDetailPage/SocialSectionDetailPage';
@@ -83,7 +83,7 @@ export default function MoviePage() {
             mediaDirector={directorMadiaInfo()}
           />
         )
-        : <DetailPageLoader />}
+        : <DetailPageHeaderLoader />}
       <Box className="mainDetailPageContainer">
         <Box className="leftColumnDetails">
           <Box className="detailCaruselContainer">
