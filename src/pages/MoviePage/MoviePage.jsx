@@ -6,6 +6,7 @@ import DetailPageLoader from '../../components/DetailPageLoader/DetailPageLoader
 import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/CaruselDetailMediaPage';
 import CaruselLoader from '../../components/CaruselLoader/CaruselLoader';
 import SocialSectionDetailPage from '../../components/SocialSectionDetailPage/SocialSectionDetailPage';
+import SectionLoader from '../../components/SectionLoader/SectionLoader';
 import { MOVIES } from '../../constants/searchTypes';
 import './MoviePage.css';
 
@@ -40,7 +41,7 @@ export default function MoviePage() {
 
   const directorMadiaInfo = () => {
     const director = creditsData.crew.find((el) => el.job === 'Director');
-    return director.name || '';
+    return director.name;
   };
 
   const castMediaInfo = () => {
@@ -48,9 +49,20 @@ export default function MoviePage() {
     return mainCast;
   };
 
-  const reviewsInfo = () => {
-    const reviews = reviewsData.results;
-    return reviews;
+  const mainReview = () => {
+    const firstReview = reviewsData.results[0];
+    const {
+      author,
+      author_details: authorDetails,
+      content,
+      created_at: createdAt,
+    } = firstReview;
+    return {
+      author,
+      authorDetails,
+      content,
+      createdAt,
+    };
   };
 
   return (
@@ -80,16 +92,18 @@ export default function MoviePage() {
                 <CaruselDetailMediaPage topCast={castMediaInfo()} />
               )
               : (
-                <CaruselLoader />
+                <Box className="caruselDetailBody ">
+                  <CaruselLoader />
+                </Box>
               )}
           </Box>
           <Box className="detailSocialContainer">
             {!isLoadingReviews
               ? (
-                <SocialSectionDetailPage />
+                <SocialSectionDetailPage reviewDetails={mainReview()} />
               )
               : (
-                <div>in progress</div>
+                <SectionLoader />
               )}
           </Box>
         </Box>
