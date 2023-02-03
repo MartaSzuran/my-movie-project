@@ -15,6 +15,7 @@ export default function AppRoutes() {
       <Route path="/movie/:movieId" element={<MoviePage />} />
       <Route path="/person/:personId" element={<PersonPage />} />
       <Route path="/tv/:tvId" element={<TvPage />} />
+      <Route path="/error" element={<TvPage />} />
     </Routes>
   );
 }

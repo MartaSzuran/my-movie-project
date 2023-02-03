@@ -13,17 +13,15 @@ import './MoviePage.css';
 export default function MoviePage() {
   const { movieId } = useParams();
 
-  const { mediaData, isLoading, isError } = useFetchDataDetails(MOVIES, movieId);
+  const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);
   const {
     creditsData,
     isLoadingCredits,
-    isErrorCredits,
   } = useFetchDataCreditsDetails(MOVIES, movieId);
 
   const {
     reviewsData,
     isLoadingReviews,
-    isErrorReviews,
   } = useFetchDataReviewsDetails(MOVIES, movieId);
 
   const {
@@ -49,16 +47,14 @@ export default function MoviePage() {
     return mainCast;
   };
 
-  const mainReview = () => {
+  const getMainReviewData = () => {
     const firstReview = reviewsData.results[0];
     const {
-      author,
       author_details: authorDetails,
       content,
       created_at: createdAt,
     } = firstReview;
     return {
-      author,
       authorDetails,
       content,
       createdAt,
@@ -100,7 +96,7 @@ export default function MoviePage() {
           <Box className="detailSocialContainer">
             {!isLoadingReviews
               ? (
-                <SocialSectionDetailPage reviewDetails={mainReview()} />
+                <SocialSectionDetailPage reviewDetails={getMainReviewData()} />
               )
               : (
                 <SectionLoader />

@@ -1,53 +1,70 @@
 import { PropTypes } from 'prop-types';
 import { Box, Typography, Avatar } from '@mui/material';
+import { AVATAR_PHOTO_URL } from '../../constants/photosBasicUrl';
 import './ReviewCard.css';
 
 function ReviewCard({ reviewDetails }) {
+  const { name, rating, avatar_path: avatarPath } = reviewDetails.authorDetails;
+  const { createdAt, content } = reviewDetails;
   return (
     <Box className="reviewContainer">
-      <Avatar alt="reviewAuthor" src="/static/images/avatar/1.jpg" className="reviewAvatar style" />
+      <Avatar alt="name" src={`${AVATAR_PHOTO_URL}${avatarPath}`} className="reviewAvatar style" />
       <Box className="reviewDetailInfoContainer">
         <Box className="reviewDetailInfoContainerHeader">
-          <Typography className="reviewHeaderTitle style">
-            A review by
-            <span>stars</span>
+          <Box className="firstRow">
+            <Typography className="reviewHeaderTitle style">
+              A review by
+              {' '}
+              {name}
+              {' '}
+            </Typography>
+            <Box className="starsRatingContainer">
+              <span className="starsRating">
+                ★
+                {' '}
+                {`${rating}.0`}
+              </span>
+            </Box>
+          </Box>
+          <Typography className="reviewHeaderSubtitle style">
+            Written by
+            {' '}
+            {name}
+            on
+            {' '}
+            {createdAt}
           </Typography>
-          <Typography className="reviewHeaderSubtitle style">Written by ... on date</Typography>
         </Box>
-        <Typography className="reviewContent style">Review content</Typography>
+        <Typography className="reviewContent style">{content}</Typography>
       </Box>
     </Box>
   );
 }
 
 ReviewCard.propTypes = {
-  reviewDetails: PropTypes.objectOf(
+  reviewDetails:
     PropTypes.shape({
-      author: PropTypes.string,
-      authorDetails: PropTypes.arrayOf(
+      authorDetails:
         PropTypes.shape({
-          username: PropTypes.string,
+          name: PropTypes.string,
           rating: PropTypes.number,
           avatar_path: PropTypes.string,
         }),
-      ),
       content: PropTypes.string,
       createdAt: PropTypes.string,
     }),
-  ),
 };
 
 ReviewCard.defaultProps = {
-  reviewDetails: [{
-    author: '',
-    authorDetails: [{
-      username: '',
+  reviewDetails: {
+    authorDetails: {
+      name: '',
       rating: 0,
       avatar_path: '',
-    }],
+    },
     content: '',
     createdAt: '',
-  }],
+  },
 };
 
 export default ReviewCard;

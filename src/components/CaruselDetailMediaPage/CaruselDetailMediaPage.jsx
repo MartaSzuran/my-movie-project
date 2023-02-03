@@ -35,16 +35,9 @@ CaruselDetailMediaPage.propTypes = {
     PropTypes.shape({
       name: PropTypes.string,
       character: PropTypes.string,
-      profile_path: PropTypes.string.isRequired,
+      profile_path: PropTypes.string,
     }),
-  ),
-};
-
-CaruselDetailMediaPage.defaultProps = {
-  topCast: [{
-    name: '',
-    character: '',
-  }],
+  ).isRequired,
 };
 
 export default CaruselDetailMediaPage;

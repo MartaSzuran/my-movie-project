@@ -19,30 +19,26 @@ function SocialSectionDetailPage({ reviewDetails }) {
 }
 
 SocialSectionDetailPage.propTypes = {
-  reviewDetails: PropTypes.objectOf(
+  reviewDetails:
     PropTypes.shape({
-      author: PropTypes.string,
-      authorDetails: PropTypes.arrayOf(
+      authorDetails:
         PropTypes.shape({
-          username: PropTypes.string,
+          name: PropTypes.string,
           rating: PropTypes.number,
           avatar_path: PropTypes.string,
         }),
-      ),
       content: PropTypes.string,
       createdAt: PropTypes.string,
     }),
-  ),
 };
 
 SocialSectionDetailPage.defaultProps = {
   reviewDetails: {
-    author: '',
-    authorDetails: [{
-      username: '',
+    authorDetails: {
+      name: '',
       rating: 0,
       avatar_path: '',
-    }],
+    },
     content: '',
     createdAt: '',
   },
