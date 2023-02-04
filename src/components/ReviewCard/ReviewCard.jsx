@@ -1,11 +1,14 @@
 import { PropTypes } from 'prop-types';
 import { Box, Typography, Avatar } from '@mui/material';
+import useDateFormat from '../../hooks/useDateFormat';
 import { AVATAR_PHOTO_URL } from '../../constants/photosBasicUrl';
 import './ReviewCard.css';
 
 function ReviewCard({ reviewDetails }) {
   const { name, rating, avatar_path: avatarPath } = reviewDetails.authorDetails;
   const { createdAt, content } = reviewDetails;
+  const [day, month, year] = useDateFormat(createdAt);
+
   return (
     <Box className="reviewContainer">
       <Avatar alt="name" src={`${AVATAR_PHOTO_URL}${avatarPath}`} className="reviewAvatar style" />
@@ -13,26 +16,16 @@ function ReviewCard({ reviewDetails }) {
         <Box className="reviewDetailInfoContainerHeader">
           <Box className="firstRow">
             <Typography className="reviewHeaderTitle style">
-              A review by
-              {' '}
-              {name}
-              {' '}
+              {`A review by ${name} `}
             </Typography>
             <Box className="starsRatingContainer">
               <span className="starsRating">
-                ★
-                {' '}
-                {`${rating}.0`}
+                {`★ ${rating}.0 `}
               </span>
             </Box>
           </Box>
           <Typography className="reviewHeaderSubtitle style">
-            Written by
-            {' '}
-            {name}
-            on
-            {' '}
-            {createdAt}
+            {`Written by ${name} on ${month} ${day},${year}`}
           </Typography>
         </Box>
         <Typography className="reviewContent style">{content}</Typography>
