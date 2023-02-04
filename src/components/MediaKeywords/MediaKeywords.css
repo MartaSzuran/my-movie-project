@@ -1,0 +1,10 @@
+.keywordsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+  word-wrap: break-word;
+  margin-top: 7px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--light-grey);
+}
