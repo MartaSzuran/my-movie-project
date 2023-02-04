@@ -1,0 +1,31 @@
+.socialSectionHeaderContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.socialSectionHeader.style {
+  margin-left: 20px;
+  margin-bottom: -10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.socialSectionHeaderMenuTabs {
+  font-size: 18px;
+  display: flex;
+  gap: 20px;
+}
+
+.socialSectionMenuTab.style {
+  border-bottom: 3px solid black;
+}
+
+.redirectionSocialFooter.style {
+  margin: 20px;
+}
+
+.redirectionSocialFooter.style:hover {
+  color: var(--dark-grey);
+  cursor: pointer;
+}

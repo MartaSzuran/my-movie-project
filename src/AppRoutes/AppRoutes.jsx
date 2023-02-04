@@ -12,9 +12,10 @@ export default function AppRoutes() {
       <Route path="/" exact element={<HomePage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/movies" element={<MoviesPage />} />
-      <Route path="/search/movie/:movieId" element={<MoviePage />} />
-      <Route path="/search/person/:personId" element={<PersonPage />} />
-      <Route path="/search/tv/:tvId" element={<TvPage />} />
+      <Route path="/movie/:movieId" element={<MoviePage />} />
+      <Route path="/person/:personId" element={<PersonPage />} />
+      <Route path="/tv/:tvId" element={<TvPage />} />
+      <Route path="/error" element={<TvPage />} />
     </Routes>
   );
 }

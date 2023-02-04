@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { Box, Typography } from '@mui/material';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import PHOTOURL from '../../constants/photosBasicUrl';
+import { PHOTO_URL } from '../../constants/photosBasicUrl';
 import 'react-circular-progressbar/dist/styles.css';
 import './CardBasic.css';
 
@@ -59,7 +59,7 @@ function CardBasic({
     <Box className="basicCardStyle">
       <img
         className="cardImage"
-        src={`${PHOTOURL}${posterPath}`}
+        src={`${PHOTO_URL}${posterPath}`}
         alt={title}
       />
       <Box className="circularProgressContainer">
