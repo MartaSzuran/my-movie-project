@@ -9,6 +9,7 @@ import {
   LANGUAGE,
   REVENUE,
 } from '../../constants/detailPageRightColumnTitles';
+import useCurrencyFormat from '../../hooks/useCurrencyFormat';
 import MediaKeywords from '../MediaKeywords/MediaKeywords';
 import './ColumnDisplayInformation.css';
 
@@ -20,6 +21,8 @@ function ColumnDisplayInformation({
   keywords,
   isLoadingKeywords,
 }) {
+  const formattedRevenue = useCurrencyFormat(revenue);
+  const formattedBudget = useCurrencyFormat(budget);
   return (
     <>
       <Box className="rightColumnIcons">
@@ -28,8 +31,14 @@ function ColumnDisplayInformation({
       </Box>
       <Box>
         <InformationTitleDescriptionDisplay title={STATUS} description={status} />
-        <InformationTitleDescriptionDisplay title={REVENUE} description={revenue} />
-        <InformationTitleDescriptionDisplay title={BUDGET} description={budget} />
+        <InformationTitleDescriptionDisplay
+          title={REVENUE}
+          description={formattedRevenue}
+        />
+        <InformationTitleDescriptionDisplay
+          title={BUDGET}
+          description={formattedBudget}
+        />
         <InformationTitleDescriptionDisplay title={LANGUAGE} description={language} />
       </Box>
       <Box>
