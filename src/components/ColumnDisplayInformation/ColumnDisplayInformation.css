@@ -1,0 +1,22 @@
+.rightColumnIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: 20px;
+  margin-bottom: 25px;
+}
+
+.icon.style {
+  font-size: 30px;
+  color: var(--dark-grey);
+}
+
+.icon.style:hover {
+  font-size: 30px;
+  color: var(--light-grey);
+}
+
+.icon.style.rigthBorderIcon {
+  border-right: 1px solid var(--super-light-grey);
+  padding-right: 9px;
+}

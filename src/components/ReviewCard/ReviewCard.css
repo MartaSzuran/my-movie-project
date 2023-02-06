@@ -3,7 +3,7 @@
   flex-direction: row;
   gap: 25px;
   margin: auto;
-  width: 96%;
+  width: 93%;
   min-height: 200px;
   border: 1px solid var(--super-light-grey);
   border-radius: 6px;
@@ -19,6 +19,7 @@
 .reviewAvatar.style {
   width: 60px;
   height: 60px;
+  background-color: var(--super-light-grey);
 }
 
 .reviewHeaderTitle.style {

@@ -1,6 +1,6 @@
 const requestErrorHandler = async (error) => {
   if (error) {
-    window.location.pathname('./error');
+    // window.location.assign('./error');
   }
 };
 

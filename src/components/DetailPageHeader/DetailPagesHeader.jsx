@@ -6,6 +6,7 @@ import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import { MEDIUM_PHOTO_URL, BIG_PHOTO_URL } from '../../constants/photosBasicUrl';
+import useDateFormat from '../../hooks/useDateFormat';
 import 'react-circular-progressbar/dist/styles.css';
 import './DetailPagesHeader.css';
 
@@ -71,6 +72,8 @@ function DetailPagesHeader({
     );
   };
 
+  const [, , year] = useDateFormat(releaseDate);
+
   return (
     <Box
       className="detailHeaderContainer"
@@ -84,7 +87,7 @@ function DetailPagesHeader({
         className="detailHeaderImage"
       />
       <Box className="dataDetailHeader">
-        <Typography className="headerStyle title">{title}</Typography>
+        <Typography className="headerStyle title">{`${title} (${year})`}</Typography>
         <Box className="dataFacts">
           <Typography>
             {releaseDate}

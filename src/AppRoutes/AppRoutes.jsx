@@ -4,6 +4,7 @@ import SearchPage from '../pages/SearchPage/SearchPage';
 import MoviesPage from '../pages/MoviesPage/MoviesPage';
 import MoviePage from '../pages/MoviePage/MoviePage';
 import PersonPage from '../pages/PersonPage/PersonPage';
+import ReviewsPage from '../pages/ReviewsPage/ReviewsPage';
 import TvPage from '../pages/TvPage/TvPage';
 
 export default function AppRoutes() {
@@ -13,6 +14,7 @@ export default function AppRoutes() {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/movies" element={<MoviesPage />} />
       <Route path="/movie/:movieId" element={<MoviePage />} />
+      <Route path="/movie/:movieId/reviews" element={<ReviewsPage />} />
       <Route path="/person/:personId" element={<PersonPage />} />
       <Route path="/tv/:tvId" element={<TvPage />} />
       <Route path="/error" element={<TvPage />} />

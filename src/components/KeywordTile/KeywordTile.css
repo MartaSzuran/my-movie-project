@@ -1,0 +1,15 @@
+.keywordTile.style {
+  background-color: var(--greish-white);
+  border: 1px solid var(--super-light-grey);
+  border-radius: 2px;
+  height: 24px;
+}
+
+.keywordTile.style:hover {
+  cursor: pointer;
+}
+
+.keyword.style {
+  padding: 2px 8px 2px 8px;
+  font-size: 14px;
+}

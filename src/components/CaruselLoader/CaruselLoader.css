@@ -3,6 +3,6 @@
   margin-left: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   gap: 20px;
 }

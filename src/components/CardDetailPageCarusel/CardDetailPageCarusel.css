@@ -28,3 +28,18 @@
 .detailCardCharacter.style {
   font-size: 14px;
 }
+
+.noImageCaruselContainer {
+  width: 140px;
+  height: 200px;
+  border-radius: 6px 6px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--super-light-grey);
+}
+
+.searchCardNoImageCarusel.style {
+  width: 40px;
+  height: 40px;
+}

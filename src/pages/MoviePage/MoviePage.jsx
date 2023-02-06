@@ -1,12 +1,18 @@
 import { useParams } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
-import { useFetchDataDetails, useFetchDataCreditsDetails, useFetchDataReviewsDetails } from '../../hooks/useFetchDataDetails';
+import {
+  useFetchDataDetails,
+  useFetchDataCreditsDetails,
+  useFetchDataReviewsDetails,
+  useFetchDataKeywordsDetails,
+} from '../../hooks/useFetchDataDetails';
 import DetailPagesHeader from '../../components/DetailPageHeader/DetailPagesHeader';
 import DetailPageHeaderLoader from '../../components/DetailPageHeaderLoader/DetailPageHeaderLoader';
 import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/CaruselDetailMediaPage';
 import CaruselLoader from '../../components/CaruselLoader/CaruselLoader';
 import SocialSectionDetailPage from '../../components/SocialSectionDetailPage/SocialSectionDetailPage';
 import SectionLoader from '../../components/SectionLoader/SectionLoader';
+import ColumnDisplayInformation from '../../components/ColumnDisplayInformation/ColumnDisplayInformation';
 import { MOVIES } from '../../constants/searchTypes';
 import './MoviePage.css';
 
@@ -24,6 +30,8 @@ export default function MoviePage() {
     isLoadingReviews,
   } = useFetchDataReviewsDetails(MOVIES, movieId);
 
+  const { keywordsData, isLoadingKeywords } = useFetchDataKeywordsDetails(MOVIES, movieId);
+
   const {
     title,
     tagline,
@@ -35,6 +43,10 @@ export default function MoviePage() {
     popularity,
     runtime,
     production_countries: productionCoutries,
+    status,
+    budget,
+    spoken_languages: language,
+    revenue,
   } = mediaData;
 
   const directorMadiaInfo = () => {
@@ -49,15 +61,19 @@ export default function MoviePage() {
 
   const getMainReviewData = () => {
     const firstReview = reviewsData.results[0];
+    const numberOfReviews = reviewsData.results.length;
     const {
+      author,
       author_details: authorDetails,
       content,
       created_at: createdAt,
     } = firstReview;
     return {
+      author,
       authorDetails,
       content,
       createdAt,
+      numberOfReviews,
     };
   };
 
@@ -104,7 +120,22 @@ export default function MoviePage() {
           </Box>
         </Box>
         <Box className="rightColumnDetails">
-          <Typography>Status</Typography>
+          {!isLoadingKeywords
+            ? (
+              <Box className="rigthInfoContainer">
+                <ColumnDisplayInformation
+                  status={status}
+                  language={language[0].name}
+                  budget={budget}
+                  revenue={revenue}
+                  keywords={keywordsData.keywords}
+                  isLoadingKeywords={isLoadingKeywords}
+                />
+              </Box>
+            )
+            : (
+              <Typography>Status</Typography>
+            )}
         </Box>
       </Box>
     </Box>
