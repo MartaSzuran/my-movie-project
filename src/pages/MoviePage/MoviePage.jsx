@@ -61,15 +61,19 @@ export default function MoviePage() {
 
   const getMainReviewData = () => {
     const firstReview = reviewsData.results[0];
+    const numberOfReviews = reviewsData.results.length;
     const {
+      author,
       author_details: authorDetails,
       content,
       created_at: createdAt,
     } = firstReview;
     return {
+      author,
       authorDetails,
       content,
       createdAt,
+      numberOfReviews,
     };
   };
 

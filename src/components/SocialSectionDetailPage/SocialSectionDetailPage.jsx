@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import './SocialSectionDetailPage.css';
@@ -9,11 +10,11 @@ function SocialSectionDetailPage({ reviewDetails }) {
       <Box className="socialSectionHeaderContainer">
         <Typography className="socialSectionHeader style">Social</Typography>
         <Box className="socialSectionHeaderMenuTabs">
-          <Typography className="socialSectionMenuTab style">Reviews</Typography>
+          <Link to="reviews" className="socialSectionMenuTab style">{`Reviews (${reviewDetails.numberOfReviews})`}</Link>
         </Box>
       </Box>
       <ReviewCard reviewDetails={reviewDetails} />
-      <Typography className="redirectionSocialFooter style">Read All Reviews</Typography>
+      <Link to="reviews" className="redirectionSocialFooter style">Read All Reviews</Link>
     </>
   );
 }
@@ -23,24 +24,26 @@ SocialSectionDetailPage.propTypes = {
     PropTypes.shape({
       authorDetails:
         PropTypes.shape({
-          name: PropTypes.string,
           rating: PropTypes.number,
           avatar_path: PropTypes.string,
         }),
+      author: PropTypes.string,
       content: PropTypes.string,
       createdAt: PropTypes.string,
+      numberOfReviews: PropTypes.number,
     }),
 };
 
 SocialSectionDetailPage.defaultProps = {
   reviewDetails: {
     authorDetails: {
-      name: '',
       rating: 0,
       avatar_path: '',
     },
+    author: '',
     content: '',
     createdAt: '',
+    numberOfReviews: 0,
   },
 };
 

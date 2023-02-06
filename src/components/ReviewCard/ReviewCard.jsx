@@ -5,18 +5,20 @@ import { AVATAR_PHOTO_URL } from '../../constants/photosBasicUrl';
 import './ReviewCard.css';
 
 function ReviewCard({ reviewDetails }) {
-  const { name, rating, avatar_path: avatarPath } = reviewDetails.authorDetails;
-  const { createdAt, content } = reviewDetails;
+  const { rating, avatar_path: avatarPath } = reviewDetails.authorDetails;
+  const { author, createdAt, content } = reviewDetails;
   const [day, month, year] = useDateFormat(createdAt);
 
   return (
     <Box className="reviewContainer">
-      <Avatar alt="name" src={`${AVATAR_PHOTO_URL}${avatarPath}`} className="reviewAvatar style" />
+      {avatarPath
+        ? (<Avatar alt="name" src={`${AVATAR_PHOTO_URL}${avatarPath}`} className="reviewAvatar style" />)
+        : (<Avatar alt="noPhoto" className="reviewAvatar style">P</Avatar>)}
       <Box className="reviewDetailInfoContainer">
         <Box className="reviewDetailInfoContainerHeader">
           <Box className="firstRow">
             <Typography className="reviewHeaderTitle style">
-              {`A review by ${name} `}
+              {`A review by ${author} `}
             </Typography>
             <Box className="starsRatingContainer">
               <span className="starsRating">
@@ -25,7 +27,7 @@ function ReviewCard({ reviewDetails }) {
             </Box>
           </Box>
           <Typography className="reviewHeaderSubtitle style">
-            {`Written by ${name} on ${month} ${day},${year}`}
+            {`Written by ${author} on ${month} ${day},${year}`}
           </Typography>
         </Box>
         <Typography className="reviewContent style">{content}</Typography>
@@ -39,10 +41,10 @@ ReviewCard.propTypes = {
     PropTypes.shape({
       authorDetails:
         PropTypes.shape({
-          name: PropTypes.string,
           rating: PropTypes.number,
           avatar_path: PropTypes.string,
         }),
+      author: PropTypes.string,
       content: PropTypes.string,
       createdAt: PropTypes.string,
     }),
@@ -51,10 +53,10 @@ ReviewCard.propTypes = {
 ReviewCard.defaultProps = {
   reviewDetails: {
     authorDetails: {
-      name: '',
       rating: 0,
       avatar_path: '',
     },
+    author: '',
     content: '',
     createdAt: '',
   },
