@@ -1,21 +1,26 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Box, Button, Input } from '@mui/material';
-import { useFetchDataReviewsDetails } from '../../hooks/useFetchDataDetails';
+import { useFetchDataReviewsDetails, useFetchDataDetails } from '../../hooks/useFetchDataDetails';
 import { MOVIES } from '../../constants/searchTypes';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import SectionLoader from '../../components/SectionLoader/SectionLoader';
+import { SMALL_POSTER_PHOTO_URL } from '../../constants/photosBasicUrl';
 import './ReviewsPage.css';
 
 export default function ReviewsPage() {
   const [newReview, setNewReview] = useState('');
   const [isInputVisible, setIsInputVisible] = useState(true);
   const { movieId } = useParams();
+  const navigate = useNavigate();
   const {
     reviewsData,
     isLoadingReviews,
   } = useFetchDataReviewsDetails(MOVIES, movieId);
+
   const reviews = reviewsData.results;
+  const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);
+  const { title, poster_path: posterPath } = mediaData;
 
   const getReviewData = (review) => {
     const {
@@ -54,7 +59,21 @@ export default function ReviewsPage() {
 
   return (
     <Box className="reviewsPageContainer">
-      <Box>Reviews Header</Box>
+      {!isLoading
+        ? (
+          <Box className="reviewsPageHeader">
+            <img
+              className="smallMediaPoster style"
+              src={`${SMALL_POSTER_PHOTO_URL}${posterPath}`}
+              alt={title}
+            />
+            <Box className="reviewPageHEaderContainer">
+              <Box className="reviewPageHeaderTItle">{title}</Box>
+              <Button onClick={() => navigate(-1)} className="reviewHeaderButton style">⇦ Back to main</Button>
+            </Box>
+          </Box>
+        )
+        : (<Box>TITLE</Box>)}
       <Box className="reviewsColumns">
         <Box className="addReviewButtonContainer">
           <Button onClick={handleOnClickAddReviewButton} className="addReviewButton style">✎ Write review</Button>

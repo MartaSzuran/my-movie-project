@@ -6,6 +6,7 @@ import MoviePage from '../pages/MoviePage/MoviePage';
 import PersonPage from '../pages/PersonPage/PersonPage';
 import ReviewsPage from '../pages/ReviewsPage/ReviewsPage';
 import TvPage from '../pages/TvPage/TvPage';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 export default function AppRoutes() {
   return (
@@ -17,7 +18,7 @@ export default function AppRoutes() {
       <Route path="/movie/:movieId/reviews" element={<ReviewsPage />} />
       <Route path="/person/:personId" element={<PersonPage />} />
       <Route path="/tv/:tvId" element={<TvPage />} />
-      <Route path="/error" element={<TvPage />} />
+      <Route path="/error" element={<ErrorPage />} />
     </Routes>
   );
 }

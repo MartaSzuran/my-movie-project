@@ -2,10 +2,39 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 80%;
+  width: 100%;
   height: fit-content;
   align-items: center;
   margin: auto;
+}
+
+.reviewsPageHeader {
+  height: 90px;
+  width: 100%;
+  background-color: var(--darker-blue);
+  color: var(--bluish-white);
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  border-top: 1px solid var(--bluish-white);
+  padding: 30px 50px 30px 150px;
+}
+
+.smallMediaPoster.style {
+  border-radius: 5px;
+}
+
+.reviewPageHeaderTItle {
+  font-size: 40px;
+  font-weight: bold;
+  padding-left: 28px;
+}
+
+.reviewHeaderButton.style {
+  color: var(--super-light-grey);
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: none;
 }
 
 .reviewsColumns {
@@ -13,7 +42,7 @@
   flex-direction: row;
   gap: 10px;
   margin-bottom: 15px;
-  width: 100%;
+  width: 80%;
 }
 
 .addReviewButtonContainer {
