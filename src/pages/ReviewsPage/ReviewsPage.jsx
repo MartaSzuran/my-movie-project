@@ -40,17 +40,17 @@ export default function ReviewsPage() {
     setNewReview(value);
   };
 
-  // const reviewsCardGenerator = () => {
-  //   reviews.map((review) => {
-  //     const reviewDetails = getReviewData(review);
-  //     return (
-  //       <ReviewCard
-  //         key={review.id}
-  //         reviewDetails={reviewDetails}
-  //       />
-  //     );
-  //   });
-  // };
+  const reviewsCardGenerator = () => (
+    reviews.map((review) => {
+      const reviewDetails = getReviewData(review);
+      return (
+        <ReviewCard
+          key={review.id}
+          reviewDetails={reviewDetails}
+        />
+      );
+    })
+  );
 
   return (
     <Box className="reviewsPageContainer">
@@ -75,15 +75,7 @@ export default function ReviewsPage() {
           </Box>
           <Box className="cardReviewsColumns">
             {!isLoadingReviews
-              ? (reviews.map((review) => {
-                const reviewDetails = getReviewData(review);
-                return (
-                  <ReviewCard
-                    key={review.id}
-                    reviewDetails={reviewDetails}
-                  />
-                );
-              }))
+              ? (reviewsCardGenerator())
               : (<SectionLoader />)}
           </Box>
         </Box>

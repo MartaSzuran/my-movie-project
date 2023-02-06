@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import './InformationTitleDescriptionDisplay.css';
 
 function InformationTitleDescriptionDisplay({ title, description }) {
   return (
-    <>
+    <Box>
       <Typography className="infoTitle style">{title}</Typography>
       <Typography className="infoDescription style">{description}</Typography>
-    </>
+    </Box>
   );
 }
 
