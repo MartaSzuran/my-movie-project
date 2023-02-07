@@ -21,6 +21,10 @@
   border-radius: 9px 0px 0px 9px;
 }
 
+.searchCardTitle.style {
+  font-weight: bold;
+}
+
 /* style for no Image icone */
 .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.searchCardNoImage.css-i4bv87-MuiSvgIcon-root {
   color: var(--light-grey);
@@ -43,14 +47,13 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 10px;
-  gap: 5px;
   min-width: 350px;
 }
 
 .searchCard.subtitle {
   font-size: 14px;
   color: var(--dark-grey);
-  letter-spacing: 1px;
+  margin-bottom: 13px;
 }
 
 .searchCardOverView {

@@ -1,13 +1,12 @@
 import { PropTypes } from 'prop-types';
+import moment from 'moment';
 import { Box, Typography, Avatar } from '@mui/material';
-import useDateFormat from '../../hooks/useDateFormat';
 import { AVATAR_PHOTO_URL } from '../../constants/photosBasicUrl';
 import './ReviewCard.css';
 
 function ReviewCard({ reviewDetails }) {
   const { rating, avatar_path: avatarPath } = reviewDetails.authorDetails;
   const { author, createdAt, content } = reviewDetails;
-  const [day, month, year] = useDateFormat(createdAt);
 
   return (
     <Box className="reviewContainer">
@@ -27,7 +26,7 @@ function ReviewCard({ reviewDetails }) {
             </Box>
           </Box>
           <Typography className="reviewHeaderSubtitle style">
-            {`Written by ${author} on ${month} ${day},${year}`}
+            {`Written by ${author} on ${moment(createdAt).format('MMMM D, YYYY')}`}
           </Typography>
         </Box>
         <Typography className="reviewContent style">{content}</Typography>

@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import moment from 'moment';
 import { Box, Button, Input } from '@mui/material';
 import { useFetchDataReviewsDetails, useFetchDataDetails } from '../../hooks/useFetchDataDetails';
 import { MOVIES } from '../../constants/searchTypes';
@@ -20,7 +21,7 @@ export default function ReviewsPage() {
 
   const reviews = reviewsData.results;
   const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);
-  const { title, poster_path: posterPath } = mediaData;
+  const { title, poster_path: posterPath, release_date: releaseDate } = mediaData;
 
   const getReviewData = (review) => {
     const {
@@ -68,7 +69,10 @@ export default function ReviewsPage() {
               alt={title}
             />
             <Box className="reviewPageHEaderContainer">
-              <Box className="reviewPageHeaderTItle">{title}</Box>
+              <Box className="reviewPageHeaderTItle">
+                {title}
+                {` (${moment(releaseDate).format('YYYY')})`}
+              </Box>
               <Button onClick={() => navigate(-1)} className="reviewHeaderButton style">⇦ Back to main</Button>
             </Box>
           </Box>
