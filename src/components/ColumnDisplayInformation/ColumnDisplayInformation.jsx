@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import { PropTypes } from 'prop-types';
+import numeral from 'numeral';
 import LocalMoviesSharpIcon from '@mui/icons-material/LocalMoviesSharp';
 import HomeSharpIcon from '@mui/icons-material/HomeSharp';
 import InformationTitleDescriptionDisplay from '../InformationTitleDescriptionDisplay/InformationTitleDescriptionDisplay';
@@ -9,7 +10,6 @@ import {
   LANGUAGE,
   REVENUE,
 } from '../../constants/detailPageRightColumnTitles';
-import useCurrencyFormat from '../../hooks/useCurrencyFormat';
 import MediaKeywords from '../MediaKeywords/MediaKeywords';
 import './ColumnDisplayInformation.css';
 
@@ -21,8 +21,6 @@ function ColumnDisplayInformation({
   keywords,
   isLoadingKeywords,
 }) {
-  const formattedRevenue = useCurrencyFormat(revenue);
-  const formattedBudget = useCurrencyFormat(budget);
   return (
     <>
       <Box className="rightColumnIcons">
@@ -32,12 +30,12 @@ function ColumnDisplayInformation({
       <Box>
         <InformationTitleDescriptionDisplay title={STATUS} description={status} />
         <InformationTitleDescriptionDisplay
-          title={REVENUE}
-          description={formattedRevenue}
+          title={BUDGET}
+          description={numeral(budget).format('$0,0.00')}
         />
         <InformationTitleDescriptionDisplay
-          title={BUDGET}
-          description={formattedBudget}
+          title={REVENUE}
+          description={numeral(revenue).format('$0,0.00')}
         />
         <InformationTitleDescriptionDisplay title={LANGUAGE} description={language} />
       </Box>
