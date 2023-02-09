@@ -2,7 +2,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import moment from 'moment';
 import { Box, Button, Input } from '@mui/material';
-import { useFetchDataReviewsDetails, useFetchDataDetails } from '../../hooks/useFetchDataDetails';
+import {
+  useFetchDataReviewsDetails,
+  useFetchDataDetails,
+  useFetchServerReviews,
+} from '../../hooks/useFetchDataDetails';
 import { MOVIES } from '../../constants/searchTypes';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import SectionLoader from '../../components/SectionLoader/SectionLoader';
@@ -18,6 +22,11 @@ export default function ReviewsPage() {
     reviewsData,
     isLoadingReviews,
   } = useFetchDataReviewsDetails(MOVIES, movieId);
+
+  const {
+    serverReviews,
+    isLoadingServerReviews,
+  } = useFetchServerReviews();
 
   const reviews = reviewsData.results;
   const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);

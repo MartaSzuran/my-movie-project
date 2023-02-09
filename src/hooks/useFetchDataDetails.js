@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import fetchData from '../queries/index';
+import { fetchData, fetchServerReviewsData } from '../queries/index';
 
 export function useFetchDataDetails(dataType, id) {
   const query = `${dataType}/${id}`;
@@ -35,5 +35,13 @@ export function useFetchDataKeywordsDetails(dataType, id) {
   return {
     keywordsData: data || {},
     isLoadingKeywords,
+  };
+}
+
+export function useFetchServerReviews() {
+  const { data, isLoading: isLoadingServerReviews } = useQuery('serverReviews', () => fetchServerReviewsData());
+  return {
+    serverReviews: data || {},
+    isLoadingServerReviews,
   };
 }
