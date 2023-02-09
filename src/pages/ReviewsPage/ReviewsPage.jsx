@@ -10,6 +10,7 @@ import {
 import { MOVIES } from '../../constants/searchTypes';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import SectionLoader from '../../components/SectionLoader/SectionLoader';
+import HeaderLoader from '../../components/HeaderLoader/HeaderLoader';
 import { SMALL_POSTER_PHOTO_URL } from '../../constants/photosBasicUrl';
 import './ReviewsPage.css';
 
@@ -69,7 +70,7 @@ export default function ReviewsPage() {
 
   return (
     <Box className="reviewsPageContainer">
-      {!isLoading
+      {isLoading
         ? (
           <Box className="reviewsPageHeader">
             <img
@@ -86,7 +87,7 @@ export default function ReviewsPage() {
             </Box>
           </Box>
         )
-        : (<Box>TITLE</Box>)}
+        : (<HeaderLoader />)}
       <Box className="reviewsColumns">
         <Box className="addReviewButtonContainer">
           <Button onClick={handleOnClickAddReviewButton} className="addReviewButton style">✎ Write review</Button>
