@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getDefaultQuery from '../../utils/defaultApiQueryParams';
-import getData from '../../api';
+import { getData } from '../../api';
 
 const initialState = {
   trendingData: [],

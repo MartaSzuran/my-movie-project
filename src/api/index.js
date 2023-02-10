@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getData = async (query) => {
+export const getData = async (query) => {
   try {
     return await axios.get(`${query}`);
   } catch (error) {
@@ -8,4 +8,10 @@ const getData = async (query) => {
   }
 };
 
-export default getData;
+export const postData = async (query, data) => {
+  try {
+    return await axios.post(`${query}`, { data });
+  } catch (error) {
+    throw new Error('Error');
+  }
+};

@@ -7,6 +7,7 @@ import {
   useFetchDataDetails,
   useFetchServerReviews,
 } from '../../hooks/useFetchDataDetails';
+import { postNewReview } from '../../queries/index';
 import { MOVIES } from '../../constants/searchTypes';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import SectionLoader from '../../components/SectionLoader/SectionLoader';
@@ -15,23 +16,26 @@ import { SMALL_POSTER_PHOTO_URL } from '../../constants/photosBasicUrl';
 import './ReviewsPage.css';
 
 export default function ReviewsPage() {
-  const [newReview, setNewReview] = useState('');
+  const [newAuthor, setNewAuthor] = useState('');
+  const [reviewDescription, setReviewDescription] = useState('');
   const [isInputVisible, setIsInputVisible] = useState(true);
   const { movieId } = useParams();
   const navigate = useNavigate();
+
   const {
     reviewsData,
     isLoadingReviews,
   } = useFetchDataReviewsDetails(MOVIES, movieId);
 
+  const reviews = reviewsData.results;
+
+  const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);
+  const { title, poster_path: posterPath, release_date: releaseDate } = mediaData;
+
   const {
     serverReviews,
     isLoadingServerReviews,
   } = useFetchServerReviews();
-
-  const reviews = reviewsData.results;
-  const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);
-  const { title, poster_path: posterPath, release_date: releaseDate } = mediaData;
 
   const getReviewData = (review) => {
     const {
@@ -52,8 +56,31 @@ export default function ReviewsPage() {
     setIsInputVisible(!isInputVisible);
   };
 
-  const handleOnReviewInputChange = ({ target: { value } }) => {
-    setNewReview(value);
+  const handleOnReviewAuthorInputChange = ({ target: { value } }) => {
+    setNewAuthor(value);
+  };
+
+  const handleOnReviewDescriptionInputChange = ({ target: { value } }) => {
+    setReviewDescription(value);
+  };
+
+  const onClickSubmitNewReviewButton = () => {
+    if (newAuthor && reviewDescription) {
+      postNewReview({
+        author: newAuthor,
+        reviewDescription,
+        movieId,
+      });
+      setIsInputVisible(true);
+      clearInputsFields();
+    }
+  };
+
+  const onClickCancelNewReviewButton = () => {
+    setNewAuthor('');
+    setReviewDescription('');
+    setIsInputVisible(true);
+    clearInputsFields();
   };
 
   const reviewsCardGenerator = () => (
@@ -68,9 +95,14 @@ export default function ReviewsPage() {
     })
   );
 
+  const clearInputsFields = () => {
+    setNewAuthor('');
+    setReviewDescription('');
+  };
+
   return (
     <Box className="reviewsPageContainer">
-      {isLoading
+      {!isLoading
         ? (
           <Box className="reviewsPageHeader">
             <img
@@ -95,15 +127,21 @@ export default function ReviewsPage() {
         <Box className="reviewsColumn">
           <Box className={isInputVisible ? 'reviewFormContainer hidden' : 'reviewFormContainer'}>
             <Input
+              placeholder="Author name"
+              value={newAuthor}
+              onChange={handleOnReviewAuthorInputChange}
+              className="reviewAuthorInputField style"
+            />
+            <Input
               placeholder="Write your review here..."
-              value={newReview}
-              onChange={handleOnReviewInputChange}
+              value={reviewDescription}
+              onChange={handleOnReviewDescriptionInputChange}
               multiline
-              className="reviewInputField style"
+              className="reviewDescriptionInputField style"
             />
             <Box className="reviewFormButtonsContainer">
-              <Button className="reviewFormButtons style">Submit</Button>
-              <Button className="reviewFormButtons style">Canel</Button>
+              <Button onClick={onClickSubmitNewReviewButton} className="reviewFormButtons style">Submit</Button>
+              <Button onClick={onClickCancelNewReviewButton} className="reviewFormButtons style">Cancel</Button>
             </Box>
           </Box>
           <Box className="cardReviewsColumns">

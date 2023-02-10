@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getDefaultQuery from '../../utils/defaultApiQueryParams';
-import getData from '../../api/index';
+import { getData } from '../../api/index';
 
 const initialState = {
   searchData: [],

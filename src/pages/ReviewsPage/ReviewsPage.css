@@ -77,7 +77,26 @@
   height: 0px;
 }
 
-.reviewInputField.style {
+.reviewAuthorInputField.style {
+  display: flex;
+  align-items: flex-start;
+  min-height: 50px;
+  border: 1px solid var(--super-light-grey);
+  border-radius: 6px;
+  box-shadow: 0px 0px 12px 4px var(--super-light-grey);
+  padding: 15px 15px 15px 25px;
+}
+
+/* remove deafult input border bottom style  */
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewAuthorInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:before {
+  border-bottom: 0px;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewAuthorInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:after {
+  border-bottom: 0px;
+}
+
+.reviewDescriptionInputField.style {
   display: flex;
   align-items: flex-start;
   min-height: 200px;
@@ -88,11 +107,11 @@
 }
 
 /* remove deafult input border bottom style  */
-.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:before {
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewDescriptionInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:before {
   border-bottom: 0px;
 }
 
-.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:after {
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewDescriptionInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:after {
   border-bottom: 0px;
 }
 

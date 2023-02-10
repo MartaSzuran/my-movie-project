@@ -4,7 +4,6 @@ import { fetchData, fetchServerReviewsData } from '../queries/index';
 export function useFetchDataDetails(dataType, id) {
   const query = `${dataType}/${id}`;
   const { data, isLoading } = useQuery('details', () => fetchData(query));
-
   return {
     mediaData: data || {},
     isLoading,
