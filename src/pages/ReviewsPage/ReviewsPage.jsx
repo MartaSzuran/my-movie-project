@@ -6,21 +6,27 @@ import {
   useFetchDataReviewsDetails,
   useFetchDataDetails,
   useFetchServerReviews,
+  usePostNewReview,
 } from '../../hooks/useFetchDataDetails';
-import { postNewReview } from '../../queries/index';
 import { MOVIES } from '../../constants/searchTypes';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
+import ServerReviewCard from '../../components/ServerReviewCard/ServerReviewCard';
 import SectionLoader from '../../components/SectionLoader/SectionLoader';
 import HeaderLoader from '../../components/HeaderLoader/HeaderLoader';
 import { SMALL_POSTER_PHOTO_URL } from '../../constants/photosBasicUrl';
 import './ReviewsPage.css';
 
 export default function ReviewsPage() {
+  const { movieId } = useParams();
+  const navigate = useNavigate();
+
+  const { mutate } = usePostNewReview();
+
+  const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);
+  const { title, poster_path: posterPath, release_date: releaseDate } = mediaData;
   const [newAuthor, setNewAuthor] = useState('');
   const [reviewDescription, setReviewDescription] = useState('');
   const [isInputVisible, setIsInputVisible] = useState(true);
-  const { movieId } = useParams();
-  const navigate = useNavigate();
 
   const {
     reviewsData,
@@ -28,14 +34,6 @@ export default function ReviewsPage() {
   } = useFetchDataReviewsDetails(MOVIES, movieId);
 
   const reviews = reviewsData.results;
-
-  const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);
-  const { title, poster_path: posterPath, release_date: releaseDate } = mediaData;
-
-  const {
-    serverReviews,
-    isLoadingServerReviews,
-  } = useFetchServerReviews();
 
   const getReviewData = (review) => {
     const {
@@ -52,6 +50,50 @@ export default function ReviewsPage() {
     };
   };
 
+  const reviewsCardGenerator = () => (
+    reviews.map((review) => {
+      const reviewDetails = getReviewData(review);
+      return (
+        <ReviewCard
+          key={review.id}
+          reviewDetails={reviewDetails}
+        />
+      );
+    })
+  );
+
+  const {
+    serverReviews,
+    isLoadingServerReviews,
+  } = useFetchServerReviews();
+
+  const getServerReviewData = (serverReview) => {
+    const {
+      _id: id,
+      author,
+      createdAt,
+      reviewDescription: content,
+    } = serverReview;
+    return {
+      id,
+      author,
+      content,
+      createdAt,
+    };
+  };
+
+  const serverReviewsCardGenerator = () => (
+    serverReviews.map((serverReview) => {
+      const serverReviewDetail = getServerReviewData(serverReview);
+      return (
+        <ServerReviewCard
+          key={serverReviewDetail.id}
+          serverReviewDetail={serverReviewDetail}
+        />
+      );
+    })
+  );
+
   const handleOnClickAddReviewButton = () => {
     setIsInputVisible(!isInputVisible);
   };
@@ -66,11 +108,12 @@ export default function ReviewsPage() {
 
   const onClickSubmitNewReviewButton = () => {
     if (newAuthor && reviewDescription) {
-      postNewReview({
+      const newRew = {
         author: newAuthor,
         reviewDescription,
         movieId,
-      });
+      };
+      mutate(newRew);
       setIsInputVisible(true);
       clearInputsFields();
     }
@@ -82,18 +125,6 @@ export default function ReviewsPage() {
     setIsInputVisible(true);
     clearInputsFields();
   };
-
-  const reviewsCardGenerator = () => (
-    reviews.map((review) => {
-      const reviewDetails = getReviewData(review);
-      return (
-        <ReviewCard
-          key={review.id}
-          reviewDetails={reviewDetails}
-        />
-      );
-    })
-  );
 
   const clearInputsFields = () => {
     setNewAuthor('');
@@ -145,6 +176,9 @@ export default function ReviewsPage() {
             </Box>
           </Box>
           <Box className="cardReviewsColumns">
+            {!isLoadingServerReviews
+              ? (serverReviewsCardGenerator())
+              : (<SectionLoader />)}
             {!isLoadingReviews
               ? (reviewsCardGenerator())
               : (<SectionLoader />)}

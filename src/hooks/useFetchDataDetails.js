@@ -1,5 +1,5 @@
-import { useQuery } from 'react-query';
-import { fetchData, fetchServerReviewsData } from '../queries/index';
+import { useQuery, useMutation } from 'react-query';
+import { fetchData, fetchServerReviewsData, postNewReview } from '../queries/index';
 
 export function useFetchDataDetails(dataType, id) {
   const query = `${dataType}/${id}`;
@@ -43,4 +43,8 @@ export function useFetchServerReviews() {
     serverReviews: data || {},
     isLoadingServerReviews,
   };
+}
+
+export function usePostNewReview(newRev) {
+  return useMutation(postNewReview);
 }
