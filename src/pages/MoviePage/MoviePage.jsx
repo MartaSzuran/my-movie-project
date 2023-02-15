@@ -32,6 +32,8 @@ export default function MoviePage() {
 
   const { keywordsData, isLoadingKeywords } = useFetchDataKeywordsDetails(MOVIES, movieId);
 
+  const { keywords } = keywordsData;
+
   const {
     title,
     tagline,
@@ -131,7 +133,7 @@ export default function MoviePage() {
           </Box>
         </Box>
         <Box className="rightColumnDetails">
-          {!isLoadingKeywords && keywordsData.keywords.length
+          {!isLoadingKeywords && keywords.length
             ? (
               <Box className="rigthInfoContainer">
                 <ColumnDisplayInformation
@@ -139,7 +141,7 @@ export default function MoviePage() {
                   language={language[0].name}
                   budget={budget}
                   revenue={revenue}
-                  keywords={keywordsData.keywords}
+                  keywords={keywords}
                   isLoadingKeywords={isLoadingKeywords}
                 />
               </Box>
