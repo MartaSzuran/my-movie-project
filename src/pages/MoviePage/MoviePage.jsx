@@ -5,7 +5,7 @@ import {
   useFetchDataCreditsDetails,
   useFetchDataReviewsDetails,
   useFetchDataKeywordsDetails,
-} from '../../hooks/useFetchDataDetails';
+} from '../../hooks/index';
 import DetailPagesHeader from '../../components/DetailPageHeader/DetailPagesHeader';
 import DetailPageHeaderLoader from '../../components/DetailPageHeaderLoader/DetailPageHeaderLoader';
 import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/CaruselDetailMediaPage';
@@ -110,7 +110,7 @@ export default function MoviePage() {
               )}
           </Box>
           <Box className="detailSocialContainer">
-            {!isLoadingReviews
+            {!isLoadingReviews && reviewsData.results.length
               ? (
                 <SocialSectionDetailPage reviewDetails={getMainReviewData()} />
               )
@@ -120,7 +120,7 @@ export default function MoviePage() {
           </Box>
         </Box>
         <Box className="rightColumnDetails">
-          {!isLoadingKeywords
+          {!isLoadingKeywords && keywordsData.keywords.length
             ? (
               <Box className="rigthInfoContainer">
                 <ColumnDisplayInformation

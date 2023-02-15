@@ -7,7 +7,7 @@ import {
   useFetchDataDetails,
   useFetchServerReviews,
   usePostNewReview,
-} from '../../hooks/useFetchDataDetails';
+} from '../../hooks/index';
 import { MOVIES } from '../../constants/searchTypes';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import ServerReviewCard from '../../components/ServerReviewCard/ServerReviewCard';
@@ -20,7 +20,7 @@ export default function ReviewsPage() {
   const { movieId } = useParams();
   const navigate = useNavigate();
 
-  const { mutate } = usePostNewReview();
+  const { mutate: addReview } = usePostNewReview();
 
   const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);
   const { title, poster_path: posterPath, release_date: releaseDate } = mediaData;
@@ -108,12 +108,11 @@ export default function ReviewsPage() {
 
   const onClickSubmitNewReviewButton = () => {
     if (newAuthor && reviewDescription) {
-      const newRew = {
+      addReview({
         author: newAuthor,
         reviewDescription,
         movieId,
-      };
-      mutate(newRew);
+      });
       setIsInputVisible(true);
       clearInputsFields();
     }
