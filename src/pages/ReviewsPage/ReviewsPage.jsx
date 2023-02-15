@@ -65,7 +65,7 @@ export default function ReviewsPage() {
   const {
     serverReviews,
     isLoadingServerReviews,
-  } = useFetchServerReviews();
+  } = useFetchServerReviews(movieId);
 
   const getServerReviewData = (serverReview) => {
     const {

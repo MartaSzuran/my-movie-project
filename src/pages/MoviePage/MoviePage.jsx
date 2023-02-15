@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import {
   useFetchDataDetails,
@@ -77,6 +77,17 @@ export default function MoviePage() {
     };
   };
 
+  const checkIfReviewsExists = () => {
+    if (reviewsData.results.length) {
+      return <SocialSectionDetailPage reviewDetails={getMainReviewData()} />;
+    }
+    return (
+      <Box className="addFirstReviewContainer">
+        <Link to="reviews" className="addFirstReviewLink style">Add first review</Link>
+      </Box>
+    );
+  };
+
   return (
     <Box>
       {!isLoading && !isLoadingCredits
@@ -110,9 +121,9 @@ export default function MoviePage() {
               )}
           </Box>
           <Box className="detailSocialContainer">
-            {!isLoadingReviews && reviewsData.results.length
+            {!isLoadingReviews
               ? (
-                <SocialSectionDetailPage reviewDetails={getMainReviewData()} />
+                checkIfReviewsExists()
               )
               : (
                 <SectionLoader />
