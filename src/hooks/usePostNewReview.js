@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { nanoid } from 'nanoid';
-import { postNewReview } from '../queries';
+import { postNewReview } from '../queries/index';
 
 export default function usePostNewReview() {
   const queryClient = useQueryClient();
