@@ -2,10 +2,39 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 80%;
+  width: 100%;
   height: fit-content;
   align-items: center;
   margin: auto;
+}
+
+.reviewsPageHeader {
+  height: 90px;
+  width: 100%;
+  background-color: var(--darker-blue);
+  color: var(--bluish-white);
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  border-top: 1px solid var(--bluish-white);
+  padding: 30px 50px 30px 150px;
+}
+
+.smallMediaPoster.style {
+  border-radius: 5px;
+}
+
+.reviewPageHeaderTItle {
+  font-size: 40px;
+  font-weight: bold;
+  padding-left: 28px;
+}
+
+.reviewHeaderButton.style {
+  color: var(--super-light-grey);
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: none;
 }
 
 .reviewsColumns {
@@ -13,7 +42,7 @@
   flex-direction: row;
   gap: 10px;
   margin-bottom: 15px;
-  width: 100%;
+  width: 80%;
 }
 
 .addReviewButtonContainer {
@@ -48,7 +77,27 @@
   height: 0px;
 }
 
-.reviewInputField.style {
+.reviewAuthorInputField.style {
+  display: flex;
+  align-items: flex-start;
+  min-height: 50px;
+  border: 1px solid var(--super-light-grey);
+  border-radius: 6px;
+  box-shadow: 0px 0px 12px 4px var(--super-light-grey);
+  padding: 15px 15px 15px 25px;
+  margin-bottom: 10px;
+}
+
+/* remove deafult input border bottom style  */
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewAuthorInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:before {
+  border-bottom: 0px;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewAuthorInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:after {
+  border-bottom: 0px;
+}
+
+.reviewDescriptionInputField.style {
   display: flex;
   align-items: flex-start;
   min-height: 200px;
@@ -59,11 +108,11 @@
 }
 
 /* remove deafult input border bottom style  */
-.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:before {
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewDescriptionInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:before {
   border-bottom: 0px;
 }
 
-.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:after {
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-multiline.reviewDescriptionInputField.style.css-he3345-MuiInputBase-root-MuiInput-root:after {
   border-bottom: 0px;
 }
 

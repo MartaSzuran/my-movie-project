@@ -1,4 +1,5 @@
 import { PropTypes } from 'prop-types';
+import moment from 'moment';
 import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import NoPhotographyIcon from '@mui/icons-material/NoPhotography';
@@ -37,13 +38,13 @@ function SearchPageCard({
           </Box>
         )}
       <Box className="searchCardDescription">
-        <Typography variant="h6" className="searchCardTitle">
+        <Typography variant="h6" className="searchCardTitle style">
           {title}
         </Typography>
         {releaseDate
           ? (
             <Typography className="searchCard subtitle">
-              {releaseDate}
+              {`${moment(releaseDate).format('MMMM D, YYYY')}`}
             </Typography>
           )
           : (

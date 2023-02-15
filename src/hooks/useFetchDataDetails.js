@@ -1,10 +1,9 @@
-import { useQuery } from 'react-query';
-import fetchData from '../queries/index';
+import { useQuery, useMutation } from 'react-query';
+import { fetchData, fetchServerReviewsData, postNewReview } from '../queries/index';
 
 export function useFetchDataDetails(dataType, id) {
   const query = `${dataType}/${id}`;
   const { data, isLoading } = useQuery('details', () => fetchData(query));
-
   return {
     mediaData: data || {},
     isLoading,
@@ -36,4 +35,16 @@ export function useFetchDataKeywordsDetails(dataType, id) {
     keywordsData: data || {},
     isLoadingKeywords,
   };
+}
+
+export function useFetchServerReviews() {
+  const { data, isLoading: isLoadingServerReviews } = useQuery('serverReviews', () => fetchServerReviewsData());
+  return {
+    serverReviews: data || {},
+    isLoadingServerReviews,
+  };
+}
+
+export function usePostNewReview(newRev) {
+  return useMutation(postNewReview);
 }
