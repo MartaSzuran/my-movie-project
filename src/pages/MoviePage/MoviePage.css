@@ -54,5 +54,19 @@
 
 .rigthInfoContainer {
   height: 734px;
-  box-shadow: -21px 0px 20px 30px white;
+}
+
+.addFirstReviewContainer {
+  margin-left: 23px;
+}
+
+.addFirstReviewLink.style {
+  padding-left: 60px;
+  color: black;
+  font-size: 20px;
+}
+
+.addFirstReviewLink.style:hover {
+  color: var(--dark-grey);
+  cursor: pointer;
 }

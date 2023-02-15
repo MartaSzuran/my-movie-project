@@ -1,11 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import {
   useFetchDataDetails,
   useFetchDataCreditsDetails,
   useFetchDataReviewsDetails,
   useFetchDataKeywordsDetails,
-} from '../../hooks/useFetchDataDetails';
+} from '../../hooks/index';
 import DetailPagesHeader from '../../components/DetailPageHeader/DetailPagesHeader';
 import DetailPageHeaderLoader from '../../components/DetailPageHeaderLoader/DetailPageHeaderLoader';
 import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/CaruselDetailMediaPage';
@@ -31,6 +31,8 @@ export default function MoviePage() {
   } = useFetchDataReviewsDetails(MOVIES, movieId);
 
   const { keywordsData, isLoadingKeywords } = useFetchDataKeywordsDetails(MOVIES, movieId);
+
+  const { keywords } = keywordsData;
 
   const {
     title,
@@ -77,6 +79,17 @@ export default function MoviePage() {
     };
   };
 
+  const checkIfReviewsExists = () => {
+    if (reviewsData.results.length) {
+      return <SocialSectionDetailPage reviewDetails={getMainReviewData()} />;
+    }
+    return (
+      <Box className="addFirstReviewContainer">
+        <Link to="reviews" className="addFirstReviewLink style">Add first review</Link>
+      </Box>
+    );
+  };
+
   return (
     <Box>
       {!isLoading && !isLoadingCredits
@@ -112,7 +125,7 @@ export default function MoviePage() {
           <Box className="detailSocialContainer">
             {!isLoadingReviews
               ? (
-                <SocialSectionDetailPage reviewDetails={getMainReviewData()} />
+                checkIfReviewsExists()
               )
               : (
                 <SectionLoader />
@@ -120,7 +133,7 @@ export default function MoviePage() {
           </Box>
         </Box>
         <Box className="rightColumnDetails">
-          {!isLoadingKeywords
+          {!isLoadingKeywords && keywords.length
             ? (
               <Box className="rigthInfoContainer">
                 <ColumnDisplayInformation
@@ -128,7 +141,7 @@ export default function MoviePage() {
                   language={language[0].name}
                   budget={budget}
                   revenue={revenue}
-                  keywords={keywordsData.keywords}
+                  keywords={keywords}
                   isLoadingKeywords={isLoadingKeywords}
                 />
               </Box>
