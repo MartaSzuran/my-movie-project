@@ -6,6 +6,7 @@ import {
   useFetchDataReviewsDetails,
   useFetchDataKeywordsDetails,
 } from '../../reactQuery/hooks/index';
+import useGetMovies from '../../graphql/hooks/index';
 import DetailPagesHeader from '../../components/DetailPageHeader/DetailPagesHeader';
 import DetailPageHeaderLoader from '../../components/DetailPageHeaderLoader/DetailPageHeaderLoader';
 import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/CaruselDetailMediaPage';
@@ -31,6 +32,8 @@ export default function MoviePage() {
   } = useFetchDataReviewsDetails(MOVIES, movieId);
 
   const { keywordsData, isLoadingKeywords } = useFetchDataKeywordsDetails(MOVIES, movieId);
+
+  const { serverMoviesData, isLoadingMoviesServerData } = useGetMovies();
 
   const { keywords } = keywordsData;
 
