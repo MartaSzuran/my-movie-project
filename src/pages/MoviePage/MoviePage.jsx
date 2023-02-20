@@ -5,7 +5,7 @@ import {
   useFetchDataCreditsDetails,
   useFetchDataReviewsDetails,
   useFetchDataKeywordsDetails,
-} from '../../hooks/index';
+} from '../../reactQuery/hooks/index';
 import DetailPagesHeader from '../../components/DetailPageHeader/DetailPagesHeader';
 import DetailPageHeaderLoader from '../../components/DetailPageHeaderLoader/DetailPageHeaderLoader';
 import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/CaruselDetailMediaPage';
