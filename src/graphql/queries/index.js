@@ -1,3 +1,3 @@
-import GETMOVIES from './getMovies';
+import GET_MOVIE from './getMovieById';
 
-export default GETMOVIES;
+export default GET_MOVIE;

@@ -1,10 +1,3 @@
-import { useQuery } from '@apollo/client';
-import GETMOVIES from '../queries/index';
+import useGetMovieDataById from './useGetMovieDataById';
 
-export default function useGetMovies() {
-  const { loading: isLoadingMoviesServerData, error, data } = useQuery(GETMOVIES);
-  return {
-    serverMoviesData: data || [],
-    isLoadingMoviesServerData,
-  };
-}
+export default useGetMovieDataById;
