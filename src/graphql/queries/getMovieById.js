@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 const GET_MOVIE = gql`
-  query FindMovieById($movieId: Int!) {
+  query FindMovieById($movieId: String!) {
     findMovieById(movieId: $movieId) {
       movieId
       liked

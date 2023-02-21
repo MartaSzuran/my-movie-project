@@ -6,7 +6,7 @@ import {
   useFetchDataReviewsDetails,
   useFetchDataKeywordsDetails,
 } from '../../reactQuery/hooks/index';
-import useGetMovies from '../../graphql/hooks/index';
+import useGetMovieDataById from '../../graphql/hooks/index';
 import DetailPagesHeader from '../../components/DetailPageHeader/DetailPagesHeader';
 import DetailPageHeaderLoader from '../../components/DetailPageHeaderLoader/DetailPageHeaderLoader';
 import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/CaruselDetailMediaPage';
@@ -33,7 +33,7 @@ export default function MoviePage() {
 
   const { keywordsData, isLoadingKeywords } = useFetchDataKeywordsDetails(MOVIES, movieId);
 
-  const { serverMoviesData, isLoadingMoviesServerData } = useGetMovies();
+  const { serverMovieData, isLoadingMovieServerData } = useGetMovieDataById(movieId);
 
   const { keywords } = keywordsData;
 
@@ -50,7 +50,7 @@ export default function MoviePage() {
     production_countries: productionCoutries,
     status,
     budget,
-    spoken_languages: language,
+    spoken_languages: languages,
     revenue,
   } = mediaData;
 
@@ -136,12 +136,12 @@ export default function MoviePage() {
           </Box>
         </Box>
         <Box className="rightColumnDetails">
-          {!isLoadingKeywords && keywords.length
+          {!isLoadingKeywords && keywords.length && languages.length
             ? (
               <Box className="rigthInfoContainer">
                 <ColumnDisplayInformation
                   status={status}
-                  language={language[0].name}
+                  language={languages[0].name}
                   budget={budget}
                   revenue={revenue}
                   keywords={keywords}
