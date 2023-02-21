@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useFetchDataDetails } from '../../hooks/index';
+import { useFetchDataDetails } from '../../reactQuery/hooks/index';
 import { TV } from '../../constants/searchTypes';
 
 export default function PersonPage() {

@@ -7,7 +7,7 @@ import {
   useFetchDataDetails,
   useFetchServerReviews,
   usePostNewReview,
-} from '../../hooks/index';
+} from '../../reactQuery/hooks/index';
 import { MOVIES } from '../../constants/searchTypes';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import ServerReviewCard from '../../components/ServerReviewCard/ServerReviewCard';

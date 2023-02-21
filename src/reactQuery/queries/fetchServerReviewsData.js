@@ -1,4 +1,4 @@
-import { getData } from '../api';
+import { getData } from '../../api';
 
 const { REACT_APP_API_URL } = process.env;
 
