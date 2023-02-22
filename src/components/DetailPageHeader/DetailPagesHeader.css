@@ -84,3 +84,7 @@
 .profession.style {
   font-size: 13px;
 }
+
+.headerIcon.favoriteStyle {
+  fill: var(--normal-pink);
+}
