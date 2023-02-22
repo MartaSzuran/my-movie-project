@@ -50,7 +50,7 @@ export default function MoviePage() {
     production_countries: productionCoutries,
     status,
     budget,
-    spoken_languages: languages,
+    mainMovieLanguage,
     revenue,
   } = mediaData;
 
@@ -136,12 +136,12 @@ export default function MoviePage() {
           </Box>
         </Box>
         <Box className="rightColumnDetails">
-          {!isLoadingKeywords && keywords.length && languages.length
+          {!isLoadingKeywords && keywords.length
             ? (
               <Box className="rigthInfoContainer">
                 <ColumnDisplayInformation
                   status={status}
-                  language={languages[0].name}
+                  language={mainMovieLanguage}
                   budget={budget}
                   revenue={revenue}
                   keywords={keywords}
