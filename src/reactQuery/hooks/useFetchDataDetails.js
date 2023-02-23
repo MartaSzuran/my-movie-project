@@ -1,13 +1,11 @@
 import { useQuery } from 'react-query';
 import { fetchData } from '../queries/index';
-import getMainMovieLanguage from '../../formaters/getMainMovieLanguage';
+import customizeMovieData from '../../formaters/customizeMovieData';
 
 export default function useFetchDataDetails(dataType, id) {
   const query = `${dataType}/${id}`;
   const { data, isLoading } = useQuery('details', () => fetchData(query));
-  const customizedData = {
-    ...data, mainMovieLanguage: getMainMovieLanguage(data?.spoken_languages),
-  };
+  const customizedData = customizeMovieData(data || {});
 
   return {
     mediaData: customizedData || {},
