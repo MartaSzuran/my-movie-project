@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   useFetchDataDetails,
   useFetchDataCreditsDetails,
@@ -10,6 +10,7 @@ import {
 import {
   useGetMovieDataById,
   useAddLike,
+  useAddTofavorites,
 } from '../../graphql/hooks/index';
 import DetailPagesHeader from '../../components/DetailPageHeader/DetailPagesHeader';
 import DetailPageHeaderLoader from '../../components/DetailPageHeaderLoader/DetailPageHeaderLoader';
@@ -24,6 +25,7 @@ import './MoviePage.css';
 export default function MoviePage() {
   const { movieId } = useParams();
   const [isLiked, setIsLiked] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);
   const {
@@ -39,11 +41,16 @@ export default function MoviePage() {
   const { keywordsData, isLoadingKeywords } = useFetchDataKeywordsDetails(MOVIES, movieId);
 
   const { serverMovieData, isLoadingMovieServerData } = useGetMovieDataById(movieId);
-  if (serverMovieData.liked) {
-    setIsLiked(serverMovieData.liked);
-  }
 
-  const { addLike, serverMovieLikeData, isLoadingMovieLikeData } = useAddLike();
+  const { addLike } = useAddLike();
+  const { addToFavorites } = useAddTofavorites();
+
+  useEffect(() => {
+    if (serverMovieData.liked) {
+      setIsLiked(serverMovieData.liked);
+      setIsFavorite(serverMovieData.favorite);
+    }
+  }, []);
 
   const { keywords } = keywordsData;
 
@@ -103,13 +110,23 @@ export default function MoviePage() {
     );
   };
 
-  const handleOnAddToFavoriteClick = () => {
-    console.log('favorite');
+  const handleOnAddToFavoritesClick = () => {
+    setIsFavorite(!isFavorite);
+    addToFavorites({ variables: { movieId, favorite: isFavorite } });
   };
 
   const handleOnAddLikeClick = () => {
     setIsLiked(!isLiked);
-    addLike({ variables: { movieId, liked: isLiked } });
+    addLike({
+      variables: { movieId, liked: isLiked },
+      optimisticResponse: {
+        addLike: {
+          movieId,
+          __typename: 'Mutation',
+          liked: isLiked,
+        },
+      },
+    });
   };
 
   return (
@@ -128,8 +145,11 @@ export default function MoviePage() {
             runtime={runtime}
             productionCoutries={productionCoutries}
             mediaDirector={directorMadiaInfo()}
-            handleOnAddToFavoriteClick={handleOnAddToFavoriteClick}
+            handleOnAddToFavoritesClick={handleOnAddToFavoritesClick}
             handleOnAddLikeClick={handleOnAddLikeClick}
+            isLiked={isLiked}
+            isFavorite={isFavorite}
+            isLoadingMovieServerData={isLoadingMovieServerData}
           />
         )
         : <DetailPageHeaderLoader />}
