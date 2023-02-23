@@ -1,3 +1,9 @@
 import useGetMovieDataById from './useGetMovieDataById';
+import useAddLike from './useAddLike';
+import useAddTofavorites from './useAddToFavorites';
 
-export default useGetMovieDataById;
+export {
+  useAddTofavorites,
+  useGetMovieDataById,
+  useAddLike,
+};

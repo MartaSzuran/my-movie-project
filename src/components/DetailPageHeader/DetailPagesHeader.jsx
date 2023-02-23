@@ -21,6 +21,8 @@ function DetailPagesHeader({
   popularity,
   runtime,
   mediaDirector,
+  handleOnAddToFavoriteClick,
+  handleOnAddLikeClick,
 }) {
   const customizeRuntime = () => {
     const runtimeHoures = Math.floor(runtime / 60);
@@ -116,18 +118,18 @@ function DetailPagesHeader({
             Score
           </Typography>
           <Box className="iconActionContainer">
-            <Box className="singleIcon">
-              <ViewListRoundedIcon className="addToListIcon Header" />
+            <Box className="singleIcon" onClick={handleOnAddToFavoriteClick}>
+              <ViewListRoundedIcon className="headerIcon favoriteStyle" />
+            </Box>
+          </Box>
+          <Box className="iconActionContainer">
+            <Box className="singleIcon" onClick={handleOnAddLikeClick}>
+              <FavoriteRoundedIcon className="headerIcon likeStyle" />
             </Box>
           </Box>
           <Box className="iconActionContainer">
             <Box className="singleIcon">
-              <FavoriteRoundedIcon className="addToListIcon Header" />
-            </Box>
-          </Box>
-          <Box className="iconActionContainer">
-            <Box className="singleIcon">
-              <BookmarkAddRoundedIcon className="addToListIcon Header" />
+              <BookmarkAddRoundedIcon />
             </Box>
           </Box>
           <Box className="iconActionContainer">
@@ -163,6 +165,8 @@ DetailPagesHeader.propTypes = {
   popularity: PropTypes.number,
   runtime: PropTypes.number,
   mediaDirector: PropTypes.string,
+  handleOnAddToFavoriteClick: PropTypes.func.isRequired,
+  handleOnAddLikeClick: PropTypes.func.isRequired,
 };
 
 DetailPagesHeader.defaultProps = {

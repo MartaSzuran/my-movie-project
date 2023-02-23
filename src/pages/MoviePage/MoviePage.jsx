@@ -1,12 +1,16 @@
 import { useParams, Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
+import { useState } from 'react';
 import {
   useFetchDataDetails,
   useFetchDataCreditsDetails,
   useFetchDataReviewsDetails,
   useFetchDataKeywordsDetails,
 } from '../../reactQuery/hooks/index';
-import useGetMovieDataById from '../../graphql/hooks/index';
+import {
+  useGetMovieDataById,
+  useAddLike,
+} from '../../graphql/hooks/index';
 import DetailPagesHeader from '../../components/DetailPageHeader/DetailPagesHeader';
 import DetailPageHeaderLoader from '../../components/DetailPageHeaderLoader/DetailPageHeaderLoader';
 import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/CaruselDetailMediaPage';
@@ -19,6 +23,7 @@ import './MoviePage.css';
 
 export default function MoviePage() {
   const { movieId } = useParams();
+  const [isLiked, setIsLiked] = useState(false);
 
   const { mediaData, isLoading } = useFetchDataDetails(MOVIES, movieId);
   const {
@@ -34,6 +39,11 @@ export default function MoviePage() {
   const { keywordsData, isLoadingKeywords } = useFetchDataKeywordsDetails(MOVIES, movieId);
 
   const { serverMovieData, isLoadingMovieServerData } = useGetMovieDataById(movieId);
+  if (serverMovieData.liked) {
+    setIsLiked(serverMovieData.liked);
+  }
+
+  const { addLike, serverMovieLikeData, isLoadingMovieLikeData } = useAddLike();
 
   const { keywords } = keywordsData;
 
@@ -50,7 +60,7 @@ export default function MoviePage() {
     production_countries: productionCoutries,
     status,
     budget,
-    spoken_languages: languages,
+    mainMovieLanguage,
     revenue,
   } = mediaData;
 
@@ -93,6 +103,15 @@ export default function MoviePage() {
     );
   };
 
+  const handleOnAddToFavoriteClick = () => {
+    console.log('favorite');
+  };
+
+  const handleOnAddLikeClick = () => {
+    setIsLiked(!isLiked);
+    addLike({ variables: { movieId, liked: isLiked } });
+  };
+
   return (
     <Box>
       {!isLoading && !isLoadingCredits
@@ -109,6 +128,8 @@ export default function MoviePage() {
             runtime={runtime}
             productionCoutries={productionCoutries}
             mediaDirector={directorMadiaInfo()}
+            handleOnAddToFavoriteClick={handleOnAddToFavoriteClick}
+            handleOnAddLikeClick={handleOnAddLikeClick}
           />
         )
         : <DetailPageHeaderLoader />}
@@ -136,12 +157,12 @@ export default function MoviePage() {
           </Box>
         </Box>
         <Box className="rightColumnDetails">
-          {!isLoadingKeywords && keywords.length && languages.length
+          {!isLoadingKeywords && keywords.length
             ? (
               <Box className="rigthInfoContainer">
                 <ColumnDisplayInformation
                   status={status}
-                  language={languages[0].name}
+                  language={mainMovieLanguage}
                   budget={budget}
                   revenue={revenue}
                   keywords={keywords}
