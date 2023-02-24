@@ -85,6 +85,10 @@
   font-size: 13px;
 }
 
-.headerIcon.favoriteStyle {
+.headerIcon.inFavorites {
+  fill: var(--normal-pink);
+}
+
+.headerIcon.liked {
   fill: var(--normal-pink);
 }

@@ -9,7 +9,7 @@ export default function useAddTofavorites() {
 
   return {
     addToFavorites,
-    serverMovieData: data?.addToFavorite || {},
+    serverMovieFavoriteData: data?.addTofavorites || {},
     isLoadingMovieFavoritesData,
   };
 }

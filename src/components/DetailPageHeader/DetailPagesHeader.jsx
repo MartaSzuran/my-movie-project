@@ -21,8 +21,10 @@ function DetailPagesHeader({
   popularity,
   runtime,
   mediaDirector,
-  handleOnAddToFavoriteClick,
+  handleOnAddToFavoritesClick,
   handleOnAddLikeClick,
+  isLiked,
+  isFavorite,
 }) {
   const customizeRuntime = () => {
     const runtimeHoures = Math.floor(runtime / 60);
@@ -73,12 +75,11 @@ function DetailPagesHeader({
       />
     );
   };
-
   return (
     <Box
       className="detailHeaderContainer"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, -1), rgba(0, 0, 0, 0.8)), url(${BIG_PHOTO_URL}${imagePath})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, -1), rgba(0, 0, 0, 0.8)) ${imagePath ? `, url(${BIG_PHOTO_URL}${imagePath})` : ''}`,
       }}
     >
       <img
@@ -118,13 +119,13 @@ function DetailPagesHeader({
             Score
           </Typography>
           <Box className="iconActionContainer">
-            <Box className="singleIcon" onClick={handleOnAddToFavoriteClick}>
-              <ViewListRoundedIcon className="headerIcon favoriteStyle" />
+            <Box className="singleIcon" onClick={() => handleOnAddToFavoritesClick(!isFavorite)}>
+              <ViewListRoundedIcon className={`headerIcon ${isFavorite ? 'inFavorites' : ''}`} />
             </Box>
           </Box>
           <Box className="iconActionContainer">
-            <Box className="singleIcon" onClick={handleOnAddLikeClick}>
-              <FavoriteRoundedIcon className="headerIcon likeStyle" />
+            <Box className="singleIcon" onClick={() => handleOnAddLikeClick(!isLiked)}>
+              <FavoriteRoundedIcon className={`headerIcon ${isLiked ? 'liked' : ''}`} />
             </Box>
           </Box>
           <Box className="iconActionContainer">
@@ -165,8 +166,10 @@ DetailPagesHeader.propTypes = {
   popularity: PropTypes.number,
   runtime: PropTypes.number,
   mediaDirector: PropTypes.string,
-  handleOnAddToFavoriteClick: PropTypes.func.isRequired,
+  handleOnAddToFavoritesClick: PropTypes.func.isRequired,
   handleOnAddLikeClick: PropTypes.func.isRequired,
+  isLiked: PropTypes.bool,
+  isFavorite: PropTypes.bool,
 };
 
 DetailPagesHeader.defaultProps = {
@@ -182,6 +185,8 @@ DetailPagesHeader.defaultProps = {
   popularity: 0,
   runtime: 0,
   mediaDirector: '',
+  isLiked: false,
+  isFavorite: false,
 };
 
 export default DetailPagesHeader;
