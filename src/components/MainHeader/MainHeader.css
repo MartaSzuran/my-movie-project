@@ -26,4 +26,6 @@
 
 .headerLinkStyle {
   color: var(--bluish-white);
+  display: initial;
+  padding: 0px;
 }

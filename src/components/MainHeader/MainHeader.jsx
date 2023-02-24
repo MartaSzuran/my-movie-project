@@ -11,6 +11,7 @@ export default function MainHeader() {
           <TheatersTwoToneIcon className="mainHeaderImageStyle" style={{ fontSize: '64px' }} />
         </Link>
         <Link to="/movies" className="headerLinkStyle">Movies</Link>
+        <Link to="/favorites" className="headerLinkStyle">Favorites</Link>
         <p>TV Shows</p>
         <p>Poeple</p>
         <p>More</p>

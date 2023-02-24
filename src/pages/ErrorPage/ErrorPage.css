@@ -1,0 +1,24 @@
+.errorPageContainer {
+  width: 401px;
+  height: 300px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  color: var(--darker-blue);
+}
+
+.acitonElementContainer {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.homePageBackButton.style {
+  font-size: 23px;
+  text-transform: none;
+  color: var(--dark-grey);
+  border: 1px solid var(--dark-grey); 
+}
