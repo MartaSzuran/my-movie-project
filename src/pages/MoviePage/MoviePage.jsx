@@ -50,7 +50,7 @@ export default function MoviePage() {
       setIsLiked(serverMovieData.liked);
       setIsFavorite(serverMovieData.favorite);
     }
-  }, []);
+  }, [serverMovieData]);
 
   const { keywords } = keywordsData;
 
@@ -110,20 +110,19 @@ export default function MoviePage() {
     );
   };
 
-  const handleOnAddToFavoritesClick = () => {
-    setIsFavorite(!isFavorite);
-    addToFavorites({ variables: { movieId, favorite: isFavorite } });
+  const handleAddToFavoritesClick = (value) => {
+    setIsFavorite(value);
+    addToFavorites({ variables: { movieId, favorite: value } });
   };
 
-  const handleOnAddLikeClick = () => {
-    setIsLiked(!isLiked);
+  const handleAddLikeClick = (value) => {
+    setIsLiked(value);
     addLike({
-      variables: { movieId, liked: isLiked },
+      variables: { movieId, liked: value },
       optimisticResponse: {
         addLike: {
           movieId,
-          __typename: 'Mutation',
-          liked: isLiked,
+          liked: value,
         },
       },
     });
@@ -145,8 +144,8 @@ export default function MoviePage() {
             runtime={runtime}
             productionCoutries={productionCoutries}
             mediaDirector={directorMadiaInfo()}
-            handleOnAddToFavoritesClick={handleOnAddToFavoritesClick}
-            handleOnAddLikeClick={handleOnAddLikeClick}
+            handleOnAddToFavoritesClick={handleAddToFavoritesClick}
+            handleOnAddLikeClick={handleAddLikeClick}
             isLiked={isLiked}
             isFavorite={isFavorite}
             isLoadingMovieServerData={isLoadingMovieServerData}

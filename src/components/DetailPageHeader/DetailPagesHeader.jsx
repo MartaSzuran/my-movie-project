@@ -75,12 +75,11 @@ function DetailPagesHeader({
       />
     );
   };
-
   return (
     <Box
       className="detailHeaderContainer"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, -1), rgba(0, 0, 0, 0.8)), url(${BIG_PHOTO_URL}${imagePath})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, -1), rgba(0, 0, 0, 0.8)) ${imagePath ? `, url(${BIG_PHOTO_URL}${imagePath})` : ''}`,
       }}
     >
       <img
@@ -120,12 +119,12 @@ function DetailPagesHeader({
             Score
           </Typography>
           <Box className="iconActionContainer">
-            <Box className="singleIcon" onClick={handleOnAddToFavoritesClick}>
+            <Box className="singleIcon" onClick={() => handleOnAddToFavoritesClick(!isFavorite)}>
               <ViewListRoundedIcon className={`headerIcon ${isFavorite ? 'inFavorites' : ''}`} />
             </Box>
           </Box>
           <Box className="iconActionContainer">
-            <Box className="singleIcon" onClick={handleOnAddLikeClick}>
+            <Box className="singleIcon" onClick={() => handleOnAddLikeClick(!isLiked)}>
               <FavoriteRoundedIcon className={`headerIcon ${isLiked ? 'liked' : ''}`} />
             </Box>
           </Box>
