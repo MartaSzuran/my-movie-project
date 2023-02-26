@@ -117,15 +117,7 @@ export default function MoviePage() {
 
   const handleAddLikeClick = (value) => {
     setIsLiked(value);
-    addLike({
-      variables: { movieId, liked: value },
-      optimisticResponse: {
-        addLike: {
-          movieId,
-          liked: value,
-        },
-      },
-    });
+    addLike({ variables: { movieId, liked: value } });
   };
 
   return (
