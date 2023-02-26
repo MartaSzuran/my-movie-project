@@ -112,12 +112,26 @@ export default function MoviePage() {
 
   const handleAddToFavoritesClick = (value) => {
     setIsFavorite(value);
-    addToFavorites({ variables: { movieId, favorite: value } });
+    addToFavorites({
+      variables: {
+        movieId,
+        poster,
+        title,
+        favorite: value,
+      },
+    });
   };
 
   const handleAddLikeClick = (value) => {
     setIsLiked(value);
-    addLike({ variables: { movieId, liked: value } });
+    addLike({
+      variables: {
+        movieId,
+        poster,
+        title,
+        liked: value,
+      },
+    });
   };
 
   return (
