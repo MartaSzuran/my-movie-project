@@ -19,6 +19,7 @@ function CaruselTrendingBody({ dataTrending }) {
         }) => (
           <CardBasic
             key={id}
+            id={id}
             posterPath={posterPath}
             title={title}
             releaseDate={releaseDate}

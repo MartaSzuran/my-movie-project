@@ -18,6 +18,7 @@ import CaruselDetailMediaPage from '../../components/CaruselDetailMediaPage/Caru
 import CaruselLoader from '../../components/CaruselLoader/CaruselLoader';
 import SocialSectionDetailPage from '../../components/SocialSectionDetailPage/SocialSectionDetailPage';
 import SectionLoader from '../../components/SectionLoader/SectionLoader';
+import MoviePageRightSectionLoader from '../../components/MoviePageRightSectionLoader/MoviePageRightSectionLoader';
 import ColumnDisplayInformation from '../../components/ColumnDisplayInformation/ColumnDisplayInformation';
 import { MOVIES } from '../../constants/searchTypes';
 import './MoviePage.css';
@@ -62,13 +63,13 @@ export default function MoviePage() {
     genres,
     overview,
     release_date: releaseDate,
-    popularity,
     runtime,
     production_countries: productionCoutries,
     status,
     budget,
     mainMovieLanguage,
     revenue,
+    vote_average: voteAverage,
   } = mediaData;
 
   const directorMadiaInfo = () => {
@@ -105,7 +106,7 @@ export default function MoviePage() {
     }
     return (
       <Box className="addFirstReviewContainer">
-        <Link to="reviews" className="addFirstReviewLink style">Add first review</Link>
+        <Link to="reviews" className="addFirstReviewLink style">Add review</Link>
       </Box>
     );
   };
@@ -118,6 +119,7 @@ export default function MoviePage() {
         poster,
         title,
         favorite: value,
+        releaseDate,
       },
     });
   };
@@ -130,6 +132,7 @@ export default function MoviePage() {
         poster,
         title,
         liked: value,
+        releaseDate,
       },
     });
   };
@@ -146,7 +149,7 @@ export default function MoviePage() {
             genres={genres}
             overview={overview}
             releaseDate={releaseDate}
-            popularity={popularity}
+            voteAverage={voteAverage}
             runtime={runtime}
             productionCoutries={productionCoutries}
             mediaDirector={directorMadiaInfo()}
@@ -196,7 +199,7 @@ export default function MoviePage() {
               </Box>
             )
             : (
-              <Typography>Status</Typography>
+              <MoviePageRightSectionLoader />
             )}
         </Box>
       </Box>

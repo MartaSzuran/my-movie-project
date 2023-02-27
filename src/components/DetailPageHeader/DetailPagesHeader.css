@@ -92,3 +92,18 @@
 .headerIcon.liked {
   fill: var(--normal-pink);
 }
+
+.noImageDetailPageContainer {
+  min-width: 300px;
+  height: 400px;
+  border: 1px solid white;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detailHeaderNoImage.style {
+  width: 100px;
+  height: 100px;
+}

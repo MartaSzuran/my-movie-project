@@ -53,7 +53,9 @@
 }
 
 .rigthInfoContainer {
-  height: 734px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .addFirstReviewContainer {

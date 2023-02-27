@@ -6,6 +6,7 @@ import GradeRoundedIcon from '@mui/icons-material/GradeRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import NoPhotographyIcon from '@mui/icons-material/NoPhotography';
 import { MEDIUM_PHOTO_URL, BIG_PHOTO_URL } from '../../constants/photosBasicUrl';
 import 'react-circular-progressbar/dist/styles.css';
 import './DetailPagesHeader.css';
@@ -18,7 +19,7 @@ function DetailPagesHeader({
   genres,
   overview,
   releaseDate,
-  popularity,
+  voteAverage,
   runtime,
   mediaDirector,
   handleOnAddToFavoritesClick,
@@ -33,7 +34,7 @@ function DetailPagesHeader({
   };
 
   const checkPopularityValue = () => {
-    const percentagePopularityValue = Math.round(popularity);
+    const percentagePopularityValue = Math.round(voteAverage * 10);
     if (percentagePopularityValue >= 70) {
       return (
         <CircularProgressbar
@@ -82,11 +83,19 @@ function DetailPagesHeader({
         backgroundImage: `linear-gradient(rgba(0, 0, 0, -1), rgba(0, 0, 0, 0.8)) ${imagePath ? `, url(${BIG_PHOTO_URL}${imagePath})` : ''}`,
       }}
     >
-      <img
-        src={`${MEDIUM_PHOTO_URL}${poster}`}
-        alt={title}
-        className="detailHeaderImage"
-      />
+      {poster
+        ? (
+          <img
+            src={`${MEDIUM_PHOTO_URL}${poster}`}
+            alt={title}
+            className="detailHeaderImage"
+          />
+        )
+        : (
+          <Box className="noImageDetailPageContainer">
+            <NoPhotographyIcon className="detailHeaderNoImage style" />
+          </Box>
+        )}
       <Box className="dataDetailHeader">
         <Typography className="headerStyle title">{`${title} (${moment(releaseDate).format('YYYY')})`}</Typography>
         <Box className="dataFacts">
@@ -163,7 +172,7 @@ DetailPagesHeader.propTypes = {
   ),
   overview: PropTypes.string,
   releaseDate: PropTypes.string,
-  popularity: PropTypes.number,
+  voteAverage: PropTypes.number,
   runtime: PropTypes.number,
   mediaDirector: PropTypes.string,
   handleOnAddToFavoritesClick: PropTypes.func.isRequired,
@@ -182,7 +191,7 @@ DetailPagesHeader.defaultProps = {
   }],
   overview: '',
   releaseDate: '',
-  popularity: 0,
+  voteAverage: 0,
   runtime: 0,
   mediaDirector: '',
   isLiked: false,
