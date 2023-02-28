@@ -1,16 +1,28 @@
 import { PropTypes } from 'prop-types';
 import { Box, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import { PHOTO_URL } from '../../constants/photosBasicUrl';
+import { MOVIES } from '../../constants/searchTypes';
 import 'react-circular-progressbar/dist/styles.css';
 import './CardBasic.css';
 
 function CardBasic({
+  id,
   posterPath,
   title,
   releaseDate,
   voteAverage,
+  switchTitle,
 }) {
+  const navigate = useNavigate();
+
+  const handleOnClickBasicCard = () => {
+    if (switchTitle === 'Movies') {
+      navigate(`/${MOVIES}/${id}`);
+    }
+  };
+
   const checkPopularityValue = () => {
     const percentagePopularityValue = Math.round(voteAverage * 10);
     if (percentagePopularityValue >= 70) {
@@ -56,7 +68,7 @@ function CardBasic({
   };
 
   return (
-    <Box className="basicCardStyle">
+    <Box className="basicCardStyle" onClick={handleOnClickBasicCard}>
       <img
         className="cardImage"
         src={`${PHOTO_URL}${posterPath}`}
@@ -74,17 +86,21 @@ function CardBasic({
 }
 
 CardBasic.propTypes = {
+  id: PropTypes.number,
   posterPath: PropTypes.string,
   title: PropTypes.string,
   releaseDate: PropTypes.string,
   voteAverage: PropTypes.number,
+  switchTitle: PropTypes.string,
 };
 
 CardBasic.defaultProps = {
+  id: 0,
   posterPath: '',
   title: '',
   releaseDate: '',
   voteAverage: 0,
+  switchTitle: '',
 };
 
 export default CardBasic;

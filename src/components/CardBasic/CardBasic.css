@@ -3,6 +3,10 @@
   margin-left: 30px;
 }
 
+.basicCardStyle:hover {
+  cursor: pointer;
+}
+
 .cardImage {
   width: 156px;
   height: 245px;

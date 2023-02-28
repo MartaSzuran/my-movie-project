@@ -21,10 +21,12 @@ function CaruselPopularBody({ dataPopular, switchTitle }) {
         }) => (
           <CardBasic
             key={id}
+            id={id}
             posterPath={posterPath}
             title={title}
             releaseDate={releaseDate}
             voteAverage={voteAverage}
+            switchTitle={switchTitle}
           />
         ))
       );

@@ -1,0 +1,9 @@
+.rigthSectionLoader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rightSectionSkeleton.style {
+  margin: 5px;
+}

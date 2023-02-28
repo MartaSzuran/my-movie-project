@@ -1,0 +1,28 @@
+.favoritesMoviesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  gap: 15px;
+}
+
+.favoritesMoviesHeader.style {
+  margin-top: 15px;
+  border-bottom: 1px solid var(--light-grey);
+  color: var(--darker-blue);
+}
+.favortiesMoviesCardsConatiner {
+  width: 80%;
+  min-height: 600px;
+  display: flex;
+  display: row;
+  justify-content: center;
+  gap: 20px;
+}
+
+.emptyFavoritesMovieArray {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

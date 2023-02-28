@@ -1,0 +1,63 @@
+.favoriteMovieCardConatiner {
+  width: 200px;
+  height: 400px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 16px;
+  box-shadow: 0px 5px 15px var(--super-light-grey);
+}
+
+.favoriteMovieCardConatiner:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 16px 10px var(--super-light-grey);  
+  transition: 0.5s;
+}
+
+.favoriteCardImageContainer {
+  width: 200px;
+  height: 290px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favoriteCardImage {
+  width: 200px;
+  height: 289px;
+  border-radius: 16px 16px 0px 0px;
+}
+
+.favoriteCardNoImage.style {
+  height: 60px;
+  width: 60px;
+}
+
+.noImageFavoriteCardContainer {
+  min-width: 200px;
+  height: 289px;
+  border-radius: 16px;
+  border: 1px solid var(--light-grey);
+}
+
+.favoriteCardHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  word-wrap: wrap;
+}
+
+.favoriteCardHeaderTitle.style {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  overflow-wrap: break-word;
+}
+
+
+.favoriteCardHeaderDate.style {
+  font-size: 15px;
+}
