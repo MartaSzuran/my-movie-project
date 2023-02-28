@@ -47,7 +47,7 @@ export default function MoviePage() {
   const { addToFavorites } = useAddTofavorites();
 
   useEffect(() => {
-    if (serverMovieData.liked) {
+    if (serverMovieData) {
       setIsLiked(serverMovieData.liked);
       setIsFavorite(serverMovieData.favorite);
     }
