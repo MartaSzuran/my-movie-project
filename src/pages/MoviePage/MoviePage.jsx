@@ -43,8 +43,8 @@ export default function MoviePage() {
 
   const { serverMovieData, isLoadingMovieServerData } = useGetMovieDataById(movieId);
 
-  const { addLike } = useAddLike();
-  const { addToFavorites } = useAddTofavorites();
+  const addLike = useAddLike();
+  const addToFavorites = useAddTofavorites();
 
   useEffect(() => {
     if (serverMovieData) {

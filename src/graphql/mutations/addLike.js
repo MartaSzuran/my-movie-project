@@ -6,7 +6,7 @@ const ADD_LIKE = gql`
       movieId
       poster
       title
-      favorite
+      liked
       releaseDate
     }
   }

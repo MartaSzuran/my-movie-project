@@ -2,21 +2,48 @@ import { useMutation } from '@apollo/client';
 import { ADD_LIKE } from '../mutations/index';
 
 export default function useAddLike() {
-  const [addLike, { data, loading: isLoadingMovieLikeData }] = useMutation(ADD_LIKE, {
-    addLike: {
-      optimisticResponse: {
-        addLike: {
-          __typename: 'Movie',
-          movieId: '123',
-          liked: false,
+  const [addLike] = useMutation(ADD_LIKE, {
+    update: (cache) => {
+      cache.modify({
+        fields: {
+          findMovieById(existingMoviesRefs = {}) {
+            return { ...existingMoviesRefs, liked: !existingMoviesRefs.liked };
+          },
         },
-      },
+      });
     },
   });
 
-  return {
-    addLike,
-    serverMovieLikeData: data?.addLike || {},
-    isLoadingMovieLikeData,
+  return (args) => {
+    const {
+      variables: {
+        movieId,
+        poster,
+        title,
+        liked,
+        releaseDate,
+      },
+    } = args;
+    return addLike({
+      variables:
+        {
+          movieId,
+          poster,
+          title,
+          liked,
+          releaseDate,
+        },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        addLike: {
+          __typename: 'Movie',
+          movieId,
+          liked: true,
+          poster,
+          title,
+          releaseDate,
+        },
+      },
+    });
   };
 }
