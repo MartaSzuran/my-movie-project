@@ -17,8 +17,9 @@
 
 - understand the difference between multiple approach to state management (redux toolkit vs react-query)
 - understand the difference between REST API and graphQL query language
+- implement mongoDB connection
 
-
+---------------------------------------------
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
